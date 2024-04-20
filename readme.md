@@ -1,1 +1,1 @@
-To test Parcel: run "parcel src/index.html" in Powershell under "myflix-client" folder
+To test Parcel: run "parcel src/index.html" in Powershell under "myFlix-client" folder
