@@ -27192,7 +27192,7 @@ const MainView = ()=>{
         {
             id: 2,
             title: "GoodFellas",
-            image: "https://eportfolios.macaulay.cuny.edu/seminars/rosenberg09/wiki/images/7/7b/Goodfellas.jpg",
+            image: "https://en.wikipedia.org/wiki/Goodfellas#/media/File:Goodfellas.jpg",
             director: "Martin Scorsese"
         },
         {
@@ -27210,7 +27210,7 @@ const MainView = ()=>{
         {
             id: 5,
             title: "The Irishman",
-            image: "https://en.wikipedia.org/wiki/File:The_Irishman_poster.jpg",
+            image: "https://upload.wikimedia.org/wikipedia/en/8/80/The_Irishman_poster.jpg",
             director: "Martin Scorsese"
         }
     ]);
@@ -27247,7 +27247,7 @@ const MainView = ()=>{
         columnNumber: 5
     }, undefined);
 };
-_s(MainView, "AK7sdjsbYVnw2+xJY/xl79nkPtk=");
+_s(MainView, "DJFj0jj9NXgYh0pe4zBqwhBggLU=");
 _c = MainView;
 var _c;
 $RefreshReg$(_c, "MainView");
@@ -27552,6 +27552,6 @@ $RefreshReg$(_c, "MovieView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"eUVl9","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Yr5M"}],"lJZlQ":[function() {},{}]},["7fuX0","adXbc","d8Dch"], "d8Dch", "parcelRequireaec4")
+},{}],"lJZlQ":[function() {},{}]},["7fuX0","adXbc","d8Dch"], "d8Dch", "parcelRequireaec4")
 
 //# sourceMappingURL=index.b4b6dfad.js.map

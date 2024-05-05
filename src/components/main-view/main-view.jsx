@@ -15,7 +15,7 @@ export const MainView = () => {
       id: 2,
       title: "GoodFellas",
       image:
-        "https://eportfolios.macaulay.cuny.edu/seminars/rosenberg09/wiki/images/7/7b/Goodfellas.jpg",
+        "https://en.wikipedia.org/wiki/Goodfellas#/media/File:Goodfellas.jpg",
       director: "Martin Scorsese",
     },
     {
@@ -36,7 +36,7 @@ export const MainView = () => {
       id: 5,
       title: "The Irishman",
       image:
-        "https://en.wikipedia.org/wiki/File:The_Irishman_poster.jpg",
+        "https://upload.wikimedia.org/wikipedia/en/8/80/The_Irishman_poster.jpg",
       director: "Martin Scorsese",
     },
   ]);
