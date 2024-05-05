@@ -27192,7 +27192,7 @@ const MainView = ()=>{
         {
             id: 2,
             title: "GoodFellas",
-            image: "https://en.wikipedia.org/wiki/Goodfellas#/media/File:Goodfellas.jpg",
+            image: "https://a.ltrbxd.com/resized/film-poster/5/1/3/8/3/51383-goodfellas-0-1000-0-1500-crop.jpg",
             director: "Martin Scorsese"
         },
         {
@@ -27247,7 +27247,7 @@ const MainView = ()=>{
         columnNumber: 5
     }, undefined);
 };
-_s(MainView, "DJFj0jj9NXgYh0pe4zBqwhBggLU=");
+_s(MainView, "Gby7YNJ8Sk+U1deCgKfGfJEfazk=");
 _c = MainView;
 var _c;
 $RefreshReg$(_c, "MainView");
@@ -27552,6 +27552,6 @@ $RefreshReg$(_c, "MovieView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{}],"lJZlQ":[function() {},{}]},["7fuX0","adXbc","d8Dch"], "d8Dch", "parcelRequireaec4")
+},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"eUVl9","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Yr5M"}],"lJZlQ":[function() {},{}]},["7fuX0","adXbc","d8Dch"], "d8Dch", "parcelRequireaec4")
 
 //# sourceMappingURL=index.b4b6dfad.js.map

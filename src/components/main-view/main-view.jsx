@@ -15,7 +15,7 @@ export const MainView = () => {
       id: 2,
       title: "GoodFellas",
       image:
-        "https://en.wikipedia.org/wiki/Goodfellas#/media/File:Goodfellas.jpg",
+        "https://a.ltrbxd.com/resized/film-poster/5/1/3/8/3/51383-goodfellas-0-1000-0-1500-crop.jpg",
       director: "Martin Scorsese",
     },
     {
