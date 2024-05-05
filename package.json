@@ -4,6 +4,9 @@
   "description": "",
   "author": "",
   "license": "ISC",
+  "scripts": {
+    "start": "parcel src/index.html --no-cache"
+  },
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
