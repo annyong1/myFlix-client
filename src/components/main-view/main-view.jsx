@@ -11,7 +11,7 @@ export const MainView = () => {
     fetch("https://duncanflixdb-4ad2a1debcf7.herokuapp.com/movies")
     .then((response) => response.json())
     .then((data) => {
-      const moviesFromApi = data.docs.map((doc) => {
+      const moviesFromApi = data.map((movie) => {
         return {
             _id: doc._id,
             title: doc.title,
