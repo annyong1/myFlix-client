@@ -7,13 +7,13 @@ export const MainView = () => {
 
   const [selectedMovie, setSelectedMovie] = useState(null);
 
-  useEffect(() => {
-    fetch("https://duncanflixdb-4ad2a1debcf7.herokuapp.com/movies")
-    .then((response) => response.json())
-    .then((data) => {
-      const moviesFromApi = data.map((movie) => {
-        return {
-            _id: doc._id,
+  async function fetchMovies() {
+		try {
+			const fetchedData = await fetch('https://duncanflixdb-4ad2a1debcf7.herokuapp.com/movies');
+			const jsonData = await fetchedData.json();
+			const movies = jsonData.map((movie) => {
+				return {
+					_id: doc._id,
             title: doc.title,
             description: doc.description,
             genre: {
@@ -27,12 +27,45 @@ export const MainView = () => {
             },
             imagepath: doc.imagepath,
             actors: doc.actors
-        };
-      });
+					};
+			});
 
-      setMovies(moviesFromApi);
-    });
-  }, []);
+			setMovies(movies);
+		} catch (error) {
+			console.log(error);
+		}
+	}
+
+	useEffect(() => {
+		fetchMovies();
+	}, []);  
+  // useEffect(() => {
+  //   fetch("https://duncanflixdb-4ad2a1debcf7.herokuapp.com/movies")
+  //   .then((response) => response.json())
+  //   .then((data) => {
+  //     console.log(data);
+  //     const moviesFromApi = data.map((movie) => {
+  //       return {
+            // _id: doc._id,
+            // title: doc.title,
+            // description: doc.description,
+            // genre: {
+            //   name: doc.genre.name,
+            //   description: doc.genre.description
+            // },
+            // director: {
+            //   name: doc.director.name,
+            //   bio: doc.director.bio,
+            //   birth: doc.director.birth
+            // },
+            // imagepath: doc.imagepath,
+            // actors: doc.actors
+  //       };
+  //     });
+
+  //     setMovies(moviesFromApi);
+  //   });
+  // }, []);
 
   if (selectedMovie) {
     return (
