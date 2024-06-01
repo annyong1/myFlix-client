@@ -5,7 +5,7 @@
   "author": "",
   "license": "ISC",
   "scripts": {
-    "start": "parcel src/index.html --no-cache"
+    "start": "parcel src/index.html --no-cache -p 3000"
   },
   "dependencies": {
     "parcel": "^2.12.0",

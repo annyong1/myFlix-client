@@ -1,3 +1,21 @@
+.movie-card {
+  border: 1px solid #ccc;
+  width: 300px;
+  margin: 10px;
+  padding: 10px;
+}
+
+.movie-image {
+  width: 100px;
+  height: auto;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.director-details {
+  margin-left: 20px;
+}
+
 .my-flix {
   color: #4682b4;
 }

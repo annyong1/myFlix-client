@@ -6,93 +6,70 @@ export const MainView = () => {
   const [movies, setMovies] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
 
-  console.log(movies);
-
   async function fetchMovies() {
-		try {
+    try {
       const fetchedData = await fetch('https://duncanflixdb-4ad2a1debcf7.herokuapp.com/movies');
       if (!fetchedData.ok) {
         throw new Error(`HTTP error! status: ${fetchedData.status}`);
       }
-      console.log(fetchedData);
-			const jsonData = await fetchedData.json();
-			const movies = jsonData.map((doc) => {
+      const jsonData = await fetchedData.json();
+      const movies = jsonData.map((doc) => {
         return {
-                    _id: doc._id,
-                    title: doc.title,
-                    description: doc.description,
-                    genre: {
-                      name: doc.genre.name,
-                      description: doc.genre.description
-                    },
-                    director: {
-                      name: doc.director.name,
-                      bio: doc.director.bio,
-                      birth: doc.director.birth
-                    },
-                    imagepath: doc.imagepath,
-                    actors: doc.actors
-                };
-			});
+          _id: doc._id,
+          title: doc.Title,
+          description: doc.Description,
+          genre: {
+            name: doc.Genre.Name,
+            description: doc.Genre.Description
+          },
+          director: {
+            name: doc.Director.Name,
+            bio: doc.Director.Bio,
+            birth: doc.Director.Birth
+          },
+          imagepath: doc.ImagePath,
+          actors: doc.Actors
+        };
+      });
 
-			setMovies(movies);
-		} catch (error) {
-			console.log(error);
-		}
-	}
-
-	useEffect(() => {
-		fetchMovies();
-	}, []);
-
-
-  // useEffect(() => {
-  //   fetch("https://duncanflixdb-4ad2a1debcf7.herokuapp.com/movies")
-  //   .then((response) => response.json())
-  //   .then((data) => {
-  //     const moviesFromApi = data.map((movie) => {
-  //       return {
-  //           _id: doc._id,
-  //           title: doc.title,
-  //           description: doc.description,
-  //           genre: {
-  //             name: doc.genre.name,
-  //             description: doc.genre.description
-  //           },
-  //           director: {
-  //             name: doc.director.name,
-  //             bio: doc.director.bio,
-  //             birth: doc.director.birth
-  //           },
-  //           imagepath: doc.imagepath,
-  //           actors: doc.actors
-  //       };
-  //     });
-
-  //     setMovies(moviesFromApi);
-  //   });
-  // }, []);
-
-  if (selectedMovie) {
-    return (
-      <MovieView movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} />
-    );
+      setMovies(movies);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
-  if (movies.length === 0) {
-    return <div>The list is empty!</div>;
-  }
+  useEffect(() => {
+    fetchMovies();
+  }, []);
+
+  // Uncomment the following sections if you need to use them
+  // if (selectedMovie) {
+  //   return (
+  //     <MovieView movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} />
+  //   );
+  // }
+
+  // if (movies.length === 0) {
+  //   return <div>The list is empty!</div>;
+  // }
+
+  console.log(movies);
+
   return (
     <div>
-      {movies.map((movie) => (
-        <MovieCard
-          key={movie.id}
-          movie={movie}
-          onMovieClick={(newSelectedMovie) => {
-            setSelectedMovie(newSelectedMovie);
-          }}
-        />
-      ))}
+      {movies.length === 0 ? (
+        <div>The list is empty!</div>
+      ) : (
+        movies.map((movie) => (
+          <MovieCard 
+            key={movie._id} 
+            movie={movie} 
+            onMovieClick={(newSelectedMovie) => {
+              setSelectedMovie(newSelectedMovie);
+            }} 
+          />
+        ))
+      )}
     </div>
   );
 };
