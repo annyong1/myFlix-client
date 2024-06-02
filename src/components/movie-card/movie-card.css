@@ -1,0 +1,18 @@
+.movie-card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+    width: 300px; /* You can adjust the width as needed */
+  }
+  
+  .movie-image {
+    width: 100px;
+    height: auto;
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .director-details {
+    margin-left: 20px; /* Adjust this value for indentation */
+  }
+  

@@ -9,3 +9,5 @@ const App = () => {
 const container = document.querySelector("#root");
 const root = createRoot(container);
 root.render(<App />);
+
+let allowedOrigins = ['*'];
