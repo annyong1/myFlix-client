@@ -1,14 +1,20 @@
 import { useState, useEffect } from "react";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
+import { LoginView } from "../login-view/login-view";
+import { SignupView} from "../signup-view/signup-view"
 
 export const MainView = () => {
   const [movies, setMovies] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
+  const [user, setUser] = useState(null);
+  const [token, setToken] = useState(null);
 
-  async function fetchMovies() {
+  async function fetchMovies(token) {
     try {
-      const fetchedData = await fetch('https://duncanflixdb-4ad2a1debcf7.herokuapp.com/movies');
+      const fetchedData = await fetch("https://duncanflixdb-4ad2a1debcf7.herokuapp.com/movies", {
+        headers: { Authorization: `Bearer ${token}` }
+      });
       if (!fetchedData.ok) {
         throw new Error(`HTTP error! status: ${fetchedData.status}`);
       }
@@ -39,24 +45,37 @@ export const MainView = () => {
   }
 
   useEffect(() => {
-    fetchMovies();
-  }, []);
-
-  // Uncomment the following sections if you need to use them
-  // if (selectedMovie) {
-  //   return (
-  //     <MovieView movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} />
-  //   );
-  // }
-
-  // if (movies.length === 0) {
-  //   return <div>The list is empty!</div>;
-  // }
+    if (!token) {
+      return;
+    }
+    fetchMovies(token);
+  }, [token]);
 
   console.log(movies);
 
+  if (!user) {
+    return (
+      <>
+        <LoginView onLoggedIn={(user, token) => {
+          setUser(user);
+          setToken(token);
+        }} />
+        or
+        <SignupView />
+      </>
+    );
+  }
+
   return (
     <div>
+      <button    
+        onClick={() => {
+          setUser(null);
+          setToken(null);
+        }}
+      >
+        Logout
+      </button>
       {movies.length === 0 ? (
         <div>The list is empty!</div>
       ) : (
@@ -73,3 +92,5 @@ export const MainView = () => {
     </div>
   );
 };
+
+export default MainView;
