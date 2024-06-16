@@ -54,6 +54,15 @@ export const SignupView = () => {
                 />
             </label>
             <label>
+                Email:
+                <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                />
+            </label>
+            <label>
                 Birthday:
                 <input
                     type="date"
