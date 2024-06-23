@@ -12,7 +12,7 @@ export const LoginView =  ({ onLoggedIn }) => {
             Password: password
         };
         
-        fetch("https://duncanflixdb-4ad2a1debcf7.herokuapp.com/users", {
+        fetch("https://duncanflixdb-4ad2a1debcf7.herokuapp.com/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
