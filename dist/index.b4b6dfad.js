@@ -28636,7 +28636,7 @@ const SignupView = ()=>{
             Email: email,
             Birthday: birthday
         };
-        fetch("SIGNUP_URL", {
+        fetch("https://duncanflixdb-4ad2a1debcf7.herokuapp.com/signup", {
             method: "POST",
             body: JSON.stringify(data),
             headers: {
