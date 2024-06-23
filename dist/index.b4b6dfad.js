@@ -28528,7 +28528,7 @@ const LoginView = ({ onLoggedIn })=>{
             Username: username,
             Password: password
         };
-        fetch("mongodb+srv://jduncan:<guesswho1@duncandb.c8hefkw.mongodb.net/?retryWrites=true&w=majority&appName=DuncanDB", {
+        fetch("https://duncanflixdb-4ad2a1debcf7.herokuapp.com/", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -28636,7 +28636,7 @@ const SignupView = ()=>{
             Email: email,
             Birthday: birthday
         };
-        fetch("SIGNUP_URL", {
+        fetch("https://duncanflixdb-4ad2a1debcf7.herokuapp.com/", {
             method: "POST",
             body: JSON.stringify(data),
             headers: {
