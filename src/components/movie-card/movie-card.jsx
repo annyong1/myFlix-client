@@ -1,26 +1,30 @@
 import PropTypes from "prop-types";
-import "./movie-card.css"; // Ensure you have a CSS file for styling
+import { Button, Card } from "react-bootstrap";
+
+import "./movie-card.scss";
 
 export const MovieCard = ({ movie, onMovieClick }) => {
   return (
-    <div
-      onClick={() => {
-        onMovieClick(movie);
-      }}
-      className="movie-card"
-    >
-      <h2>{movie.title}</h2>
-      <img src={movie.imagepath} alt={movie.title} className="movie-image" />
-      <p><strong>Description:</strong> {movie.description}</p>
-      <p><strong>Genre:</strong> {movie.genre.name} - {movie.genre.description}</p>
-      <p><strong>Director:</strong></p>
-      <div className="director-details">
-        <p><strong>Name:</strong> {movie.director.name}</p>
-        <p><strong>Bio:</strong> {movie.director.bio}</p>
-        <p><strong>Birth:</strong> {movie.director.birth}</p>
+    <Card className="h-100">
+      <div
+        onClick={() => {
+          onMovieClick(movie);
+        }}
+        className="movie-card"
+      >
+        <h2>{movie.title}</h2>
+        <img src={movie.imagepath} alt={movie.title} className="movie-image" />
+        <p><strong>Description:</strong> {movie.description}</p>
+        <p><strong>Genre:</strong> {movie.genre.name} - {movie.genre.description}</p>
+        <p><strong>Director:</strong></p>
+        <div className="director-details">
+          <p><strong>Name:</strong> {movie.director.name}</p>
+          <p><strong>Bio:</strong> {movie.director.bio}</p>
+          <p><strong>Birth:</strong> {movie.director.birth}</p>
+        </div>
+        <p><strong>Actors:</strong> {movie.actors.join(", ")}</p>
       </div>
-      <p><strong>Actors:</strong> {movie.actors.join(", ")}</p>
-    </div>
+    </Card>
   );
 };
 
