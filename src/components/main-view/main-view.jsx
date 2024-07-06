@@ -3,7 +3,8 @@ import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { SignupView} from "../signup-view/signup-view"
-import Row from "react-bootstrap/Row";
+import { Row } from "react-bootstrap";
+import { Col } from "react-bootstrap";
 
 export const MainView = () => {
   const [movies, setMovies] = useState([]);
@@ -13,7 +14,7 @@ export const MainView = () => {
 
   async function fetchMovies(token) {
     try {
-      const fetchedData = await fetch("https://duncanflixdb-4ad2a1debcf7.herokuapp.com/movies", {
+      const fetchedData = await fetch("https://duncanflixapi-2df251ca79e4.herokuapp.com/movies", {
         headers: { Authorization: `Bearer ${token}` }
       });
       if (!fetchedData.ok) {
