@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 import "./movie-card.scss";
 
-export const MovieCard = ({ movie }) => {
+export const MovieCard = ({ movie, onMovieClick }) => {
   return (
     <Card className="h-100">
       <Card.Img variant="top" src={movie.image} />
