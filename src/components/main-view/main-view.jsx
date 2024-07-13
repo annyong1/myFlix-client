@@ -56,31 +56,30 @@ export const MainView = () => {
 
   console.log(movies);
 
-  if (!user) {
-    return (
-      <BrowserRouter>
-        <NavigationBar
-          user={user}
-          onLoggedOut={() => {
-            setUser(null);
-          }}
-        />
-        <Row className="justify-content-md-center">
-          <Routes>
-            <Route
-              path="/signup"
-              element={
-                !user ? (
-                  <Navigate to="/" />
-                ) : (
-                  <Col className="mb-5" md={5}>
-                    <SignupView />
-                  </Col>
-                )
-              }
-            />
-            <Route
-              path="/login"
+  return (
+    <BrowserRouter>
+      <NavigationBar
+        user={user}
+        onLoggedOut={() => {
+          setUser(null);
+        }}
+      />
+    <Row className="justify-content-md-center">
+      <Routes>
+          <Route
+            path="/signup"
+            element={
+              user ? (
+                <Navigate to="/" />
+              ) : (
+                <Col className="mb-5" md={5}>
+                  <SignupView />
+                </Col>
+              )
+            }
+          />
+          <Route
+            path="/login"
             element={
               user ? (
                 <Navigate to="/" />
@@ -137,7 +136,6 @@ export const MainView = () => {
       </Row>
     </BrowserRouter>
   );
-}
-}
+};
 
 export default MainView;
