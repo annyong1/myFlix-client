@@ -98,36 +98,40 @@ export const MainView = () => {
             path="/movies/:movieId"
             element={
               user ? (
-                <Navigate to="/login" replace />
-              ) : movies.length === 0 ? (
-                <Col>The list is empty!</Col>
-              ) : (
+                movies.length === 0 ? (
+                  <Col>The list is empty!</Col>
+                ) : (
                 <Col className="mb-5" md={8}>
                   <MovieView/>
                 </Col>
-              ) 
-            }
-          />
-          <Route
-            path="/"
-            element={
-              user ? (
-                <Navigate to="/login" replace />
-              ) : movies.length === 0 ? (
-                <Col>The list is empty!</Col>
+              )
+            ) : (
+              <Navigate to="/login" replace /> 
+            )
+          }
+        />
+        <Route
+          path="/"
+          element={
+            user ? (
+                movies.length === 0 ? (
+                  <Col>The list is empty!</Col>
+                ) : (
+                  <>
+                    {movies.map((movie) => (
+                      <Col className="mb-4" key={movie.id} md={3}>
+                        <MovieCard
+                          movie={movie}
+                          onMovieClick={(newSelectedMovie) => {
+                            setSelectedMovie(newSelectedMovie);
+                          }}
+                        />
+                      </Col>
+                    ))}
+                  </>
+                ) 
               ) : (
-                <>
-                  {movies.map((movie) => (
-                    <Col className="mb-4" key={movie.id} md={3}>
-                      <MovieCard
-                        movie={movie}
-                        onMovieClick={(newSelectedMovie) => {
-                          setSelectedMovie(newSelectedMovie);
-                        }}
-                      />
-                    </Col>
-                  ))}
-                </>
+                <Navigate to="/login" replace />
               )            
             }
           />

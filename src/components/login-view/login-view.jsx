@@ -16,14 +16,14 @@ export const LoginView =  ({ onLoggedIn }) => {
         
         fetch("https://duncanflixapi-2df251ca79e4.herokuapp.com/login", {
             method: "POST",
+            body: JSON.stringify(data),
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(data),
         })
             .then((response) => response.json())
             .then((data) => {
-                console.log("Login response: ", data);
+                console.log("Login response: ", data.token);
                 if (data.user) {
                     localStorage.setItem("user", JSON.stringify(data.user));
                     localStorage.setItem("token", data.token);
