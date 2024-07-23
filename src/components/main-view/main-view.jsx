@@ -48,13 +48,11 @@ export const MainView = () => {
   }
 
   useEffect(() => {
-    if (!token) {
-      return;
-    }
+    if (!token) return;
     fetchMovies(token);
   }, [token]);
 
-  console.log(movies);
+  console.log("Movies state:", movies);
 
   return (
     <BrowserRouter>
@@ -62,6 +60,7 @@ export const MainView = () => {
         user={user}
         onLoggedOut={() => {
           setUser(null);
+          setToken(null);
         }}
       />
     <Row className="justify-content-md-center">
@@ -69,12 +68,12 @@ export const MainView = () => {
           <Route
             path="/signup"
             element={
-              user ? (
-                <Navigate to="/" />
-              ) : (
+              !user ? (
                 <Col className="mb-5" md={5}>
                   <SignupView />
                 </Col>
+              ) : (
+                <Navigate to="/" />
               )
             }
           />
@@ -98,7 +97,7 @@ export const MainView = () => {
           <Route
             path="/movies/:movieId"
             element={
-              !user ? (
+              user ? (
                 <Navigate to="/login" replace />
               ) : movies.length === 0 ? (
                 <Col>The list is empty!</Col>
@@ -112,7 +111,7 @@ export const MainView = () => {
           <Route
             path="/"
             element={
-              !user ? (
+              user ? (
                 <Navigate to="/login" replace />
               ) : movies.length === 0 ? (
                 <Col>The list is empty!</Col>
