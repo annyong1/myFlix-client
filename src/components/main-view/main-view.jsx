@@ -12,6 +12,7 @@ export const MainView = () => {
   const [movies, setMovies] = useState([]);
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(null);
+  console.log(movies)
 
   async function fetchMovies(token) {
     try {
@@ -41,6 +42,7 @@ export const MainView = () => {
         };
       });
 
+      console.log("Fetched movies:", movies);
       setMovies(movies);
     } catch (error) {
       console.log(error);
@@ -97,41 +99,37 @@ export const MainView = () => {
           <Route
             path="/movies/:movieId"
             element={
-              user ? (
-                movies.length === 0 ? (
-                  <Col>The list is empty!</Col>
-                ) : (
+              !user ? (
+                <Navigate to="/login" replace />
+              ) : movies.length === 0 ? (
+                <Col>The list is empty!</Col>
+              ) : (
                 <Col className="mb-5" md={8}>
-                  <MovieView/>
+                  <MovieView movies={movies}/>
                 </Col>
               )
-            ) : (
-              <Navigate to="/login" replace /> 
-            )
-          }
-        />
-        <Route
-          path="/"
-          element={
-            user ? (
-                movies.length === 0 ? (
-                  <Col>The list is empty!</Col>
-                ) : (
-                  <>
-                    {movies.map((movie) => (
-                      <Col className="mb-4" key={movie.id} md={3}>
-                        <MovieCard
-                          movie={movie}
-                          onMovieClick={(newSelectedMovie) => {
-                            setSelectedMovie(newSelectedMovie);
-                          }}
-                        />
-                      </Col>
-                    ))}
-                  </>
-                ) 
-              ) : (
+            }
+          />
+          <Route
+            path="/"
+            element={
+              !user ? (
                 <Navigate to="/login" replace />
+              ) : movies.length === 0 ? (
+                <Col>The list is empty!</Col>
+              ) : (
+                <>
+                  {movies.map((movie) => (
+                    <Col className="mb-4" key={movie._id} md={3}>
+                      <MovieCard
+                        movie={movie}
+                        onMovieClick={(newSelectedMovie) => {
+                          setSelectedMovie(newSelectedMovie);
+                        }}
+                      />
+                    </Col>
+                  ))}
+                </>
               )            
             }
           />
