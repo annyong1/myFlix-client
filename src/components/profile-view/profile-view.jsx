@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button, Card, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { MovieCard } from "../movie-card/movie-card";
+import UserInfo from './user-info';
 
 export const ProfileView = ({ movies }) => {
     const localUser = JSON.parse(localStorage.getItem("user"));
