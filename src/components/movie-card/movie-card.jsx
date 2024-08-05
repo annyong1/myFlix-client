@@ -37,3 +37,5 @@ MovieCard.propTypes = {
     actors: PropTypes.arrayOf(PropTypes.string).isRequired
   }).isRequired  
 };
+
+export default MovieCard;

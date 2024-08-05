@@ -4,6 +4,7 @@ import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
+import { ProfileView } from "../profile-view/profile-view";
 import { Row } from "react-bootstrap";
 import { Col } from "react-bootstrap";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
@@ -95,7 +96,7 @@ export const MainView = () => {
                 </Col>                
               )
             }
-          />  
+          />
           <Route
             path="/movies/:movieId"
             element={
@@ -132,6 +133,10 @@ export const MainView = () => {
                 </>
               )            
             }
+          />
+          <Route
+            path="/profile"
+            element={<ProfileView movies={movies} />}
           />
         </Routes>
       </Row>
