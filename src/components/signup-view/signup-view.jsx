@@ -1,12 +1,14 @@
 import{ useState} from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import { useNavigate } from "react-router";
 
 export const SignupView = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
     const [birthday, setBirthday ] = useState("");
+    const navigate = useNavigate();
     
     const handleSubmit = (event) => {
         event.preventDefault();

@@ -6,6 +6,7 @@ import UserInfo from './user-info';
 
 export const ProfileView = ({ movies }) => {
   const localUser = JSON.parse(localStorage.getItem("user"));
+    console.log(localUser);
   const userId = localUser ? localUser._id : null;
   const token = localStorage.getItem("token");
   const fav = movies.filter((movie) => {
@@ -26,9 +27,15 @@ export const ProfileView = ({ movies }) => {
         const response = await fetch("https://duncanflixapi-2df251ca79e4.herokuapp.com/users", {
           headers: { Authorization: `Bearer ${token}` }
         });
+
+        if (!response.ok) {
+            throw new Error('Failed to fetch user data');
+          }     
+
         const userData = await response.json();
         setUser(userData);
       } catch (err) {
+        console.error("Error fetching user data:", err);
         setError(err);
       }
     };
@@ -36,43 +43,60 @@ export const ProfileView = ({ movies }) => {
     fetchUser();
   }, [userId]);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-
+  
     const data = {
       Username: username,
       Password: password,
       Email: email,
       Birthday: birthday
     };
-
-    fetch(`https://duncanflixapi-2df251ca79e4.herokuapp.com/users/${userId}`, {
-      method: "PUT",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`
-      },
-    })
-    .then((response) => {
-        if (response.ok) {
-            alert("Profile updated successfully");
-            localStorage.setItem('user', JSON.stringify(data));
-            window.location.reload();
-        } else {
-            alert("Profile update failed");
+  
+    console.log("Sending data:", data);
+    console.log("Token:", token);
+    console.log("User ID:", userId);
+  
+    try {
+      const response = await fetch(`https://duncanflixapi-2df251ca79e4.herokuapp.com/users/${localUser.Username}`, {
+        method: "PUT",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
+        },
+      });
+  
+      const contentType = response.headers.get("content-type");
+      const responseText = await response.text();
+      console.log("Response text:", responseText);
+  
+      if (!response.ok) {
+        console.error("Error updating profile:", response.status, response.statusText, responseText);
+        if (response.status === 401 || response.status === 403) {
+          throw new Error('Permission denied: Invalid or missing token');
         }
-    });
-  };
-
+        throw new Error(responseText || 'Failed to update profile');
+      }
+  
+      if (contentType && contentType.indexOf("application/json") !== -1) {
+        const updatedUser = JSON.parse(responseText);
+        console.log("Profile updated successfully:", updatedUser);
+        alert("Profile updated successfully");
+        localStorage.setItem('user', JSON.stringify(updatedUser));
+        window.location.reload();
+      } else {
+        console.error('Response is not valid JSON:', responseText);
+        throw new Error('Response is not valid JSON');
+      }
+    } catch (err) {
+      console.error("Error during profile update:", err);
+      alert(err.message);
+    }
+  };  
+  
   if (!user) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
-
-  useEffect(() => {
-    setUsername(localUser.Username);
-    setEmail(localUser.Email);
-    setBirthday(localUser.Birthday ? localUser.Birthday.split('T')[0] : "");
-  }, [localUser]);
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -82,10 +106,9 @@ export const ProfileView = ({ movies }) => {
         </Form.Label>
         <Form.Control
           type="text"
+          name="username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-          required
-          minLength='4'
         />
       </Form.Group>
       <Form.Group controlId="formPassword">
