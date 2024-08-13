@@ -13,7 +13,20 @@ export const MainView = () => {
   const [movies, setMovies] = useState([]);
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(null);
+  const [favorites, setFavorites] = useState([]);
   console.log(movies)
+  
+  const handleFavoriteToggle = (movieId) => {
+    let updatedFavorites;
+    
+    if (favorites.includes(movieId)) {
+      updatedFavorites = favorites.filter(id => id !== movieId);
+    } else {
+      updatedFavorites = [...favorites, movieId];
+    }
+
+    setFavorites(updatedFavorites);
+  };
 
   async function fetchMovies(token) {
     try {
@@ -41,8 +54,7 @@ export const MainView = () => {
           imagepath: doc.ImagePath,
           actors: doc.Actors
         };
-      });
-
+      });      
       console.log("Fetched movies:", movies);
       setMovies(movies);
     } catch (error) {
@@ -125,8 +137,10 @@ export const MainView = () => {
                       <MovieCard
                         movie={movie}
                         onMovieClick={(newSelectedMovie) => {
-                          setSelectedMovie(newSelectedMovie);
+                          setSelectedMovie(newSelectedMovie);                        
                         }}
+                        isFavorite={favorites.includes(movie._id)}
+                        onFavoriteToggle={handleFavoriteToggle}
                       />
                     </Col>
                   ))}

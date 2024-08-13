@@ -4,11 +4,13 @@ import { MovieCard } from "../movie-card/movie-card";
 import { Link } from "react-router-dom"
 import UserInfo from './user-info';
 
-export const ProfileView = ({ movies }) => {
+export const ProfileView = ({ movies, user }) => {
   const localUser = JSON.parse(localStorage.getItem("user"));
     console.log(localUser);
   const userId = localUser ? localUser._id : null;
+    console.log(userId);
   const token = localStorage.getItem("token");
+    console.log(token);
   const fav = movies.filter((movie) => {
     return localUser.FavoriteMovies.includes(movie._id);
   });
@@ -17,9 +19,29 @@ export const ProfileView = ({ movies }) => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState(localUser.Email || "");
   const [birthday, setBirthday] = useState(localUser.Birthday ? localUser.Birthday.split('T')[0] : "");
-  const [user, setUser] = useState(localUser);
+  const [favorites, setFavorites] = useState(localUser && localUser.FavoriteMovies ? localUser.FavoriteMovies : []);
+  const [currentUser, setCurrentUser] = useState(localUser);
   const [error, setError] = useState(null);
+    console.log(favorites);
 
+  const handleFavoriteToggle = (movieId) => {
+    console.log(favorites);
+    if(!favorites) {
+      setFavorites([movieId]);
+      return;
+    }
+
+    let updatedFavorites;
+    
+    if (favorites.includes(movieId)) {
+      updatedFavorites = favorites.filter(id => id !== movieId);
+    } else {
+      updatedFavorites = [...favorites, movieId];
+    }
+
+    setFavorites(updatedFavorites);
+  };
+  
   useEffect(() => {
     const fetchUser = async () => {
       try {
@@ -33,7 +55,8 @@ export const ProfileView = ({ movies }) => {
           }     
 
         const userData = await response.json();
-        setUser(userData);
+        console.log(userData);
+        setCurrentUser(userData);
       } catch (err) {
         console.error("Error fetching user data:", err);
         setError(err);
@@ -43,6 +66,16 @@ export const ProfileView = ({ movies }) => {
     fetchUser();
   }, [userId]);
 
+  useEffect(() => {
+    if (localUser && localUser.FavoriteMovies) {
+      setFavorites(localUser.FavoriteMovies);
+    }
+  }, [localUser]);
+ 
+  useEffect(() => {
+    setFavorites(currentUser?.FavoriteMovies);
+  }, [currentUser]);
+  
   const handleSubmit = async (event) => {
     event.preventDefault();
   
@@ -95,7 +128,19 @@ export const ProfileView = ({ movies }) => {
     }
   };  
   
-  if (!user) return <div>Loading...</div>;
+  const favoriteMovies = currentUser && currentUser.FavoriteMovies
+  ? Array.from(currentUser.FavoriteMovies).map((movieId) => {
+      const movie = movies.find((movie) => movie._id === movieId);
+      return (
+        <div key={movie._id}>
+          <h4>{movie.Title}</h4>
+          <p>{movie.Description}</p>
+        </div>
+      );
+    })
+  : [];
+  
+  if (!currentUser) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
 
   return (
@@ -144,18 +189,35 @@ export const ProfileView = ({ movies }) => {
           required
         />
       </Form.Group>
+      <Form.Group>
+      <Form.Label>Favorite Movies:</Form.Label>
+      {movies.map(movie => (
+        <MovieCard
+          key={movie._id}
+          movie={movie}
+          isFavorite={favorites.includes(movie._id)}
+          onFavoriteToggle={() => handleFavoriteToggle(movie._id)}
+        />
+      ))}
+    </Form.Group>
+      {/* <Form.Group controlId="formFavorites">
+        <Form.Label>
+          <strong>Favorite Movies:</strong>
+        </Form.Label>
+        {movies.map((movie) => (
+          <Form.Check
+            key={movie._id}
+            type="checkbox"
+            label={movie.Title}
+            checked={fav.includes(movie._id)}
+            onChange={() => handleFavoriteToggle(movie._id)}
+          />
+        ))}
+      </Form.Group> */}
       <div style={{ marginTop: '20px' }}></div>
       <Button variant="primary" type="submit">Edit Profile</Button>
-      {fav.length > 0 && (
-        <div>
-          <h4>Favorite Movies</h4>
-          {fav.map((movie) => (
-            <MovieCard key={movie._id} movie={movie} />
-          ))}
-        </div>
-      )}
     </Form>
-  );
-};
+  )};
+
 
 export default ProfileView;
