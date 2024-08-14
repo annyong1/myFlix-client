@@ -7,22 +7,32 @@ import UserInfo from './user-info';
 export const ProfileView = ({ movies, user }) => {
   const localUser = JSON.parse(localStorage.getItem("user"));
     console.log(localUser);
+    if (localUser && typeof localUser === 'object' && localUser.FavoriteMovies) {
+      console.log('localUser has FavoriteMovies property');
+    } else {
+      console.log('localUser does not have FavoriteMovies property');
+    }
   const userId = localUser ? localUser._id : null;
     console.log(userId);
   const token = localStorage.getItem("token");
     console.log(token);
   const fav = movies.filter((movie) => {
-    return localUser.FavoriteMovies.includes(movie._id);
+    return localUser && localUser.FavoriteMovies && localUser.FavoriteMovies.includes(movie._id);
   });
+  console.log(localUser.FavoriteMovies)
 
-  const [username, setUsername] = useState(localUser.Username || "");
+  const [username, setUsername] = useState(localUser?.Username || "");
   const [password, setPassword] = useState("");
-  const [email, setEmail] = useState(localUser.Email || "");
-  const [birthday, setBirthday] = useState(localUser.Birthday ? localUser.Birthday.split('T')[0] : "");
-  const [favorites, setFavorites] = useState(localUser && localUser.FavoriteMovies ? localUser.FavoriteMovies : []);
+  const [email, setEmail] = useState(localUser?.Email || "");
+  const [birthday, setBirthday] = useState(localUser?.Birthday ? localUser.Birthday.split('T')[0] : "");
+  const [favorites, setFavorites] = useState(localUser?.FavoriteMovies || []);
   const [currentUser, setCurrentUser] = useState(localUser);
   const [error, setError] = useState(null);
     console.log(favorites);
+
+    useEffect(() => {
+      console.log('favorites updated:', favorites);
+    }, [favorites]);
 
   const handleFavoriteToggle = (movieId) => {
     console.log(favorites);
@@ -34,7 +44,7 @@ export const ProfileView = ({ movies, user }) => {
     let updatedFavorites;
     
     if (favorites.includes(movieId)) {
-      updatedFavorites = favorites.filter(id => id !== movieId);
+      updatedFavorites = favorites.filter((id) => id !== movieId);
     } else {
       updatedFavorites = [...favorites, movieId];
     }
@@ -191,6 +201,7 @@ export const ProfileView = ({ movies, user }) => {
       </Form.Group>
       <Form.Group>
       <Form.Label>Favorite Movies:</Form.Label>
+      console.log('favorites', favorites);
       {movies.map(movie => (
         <MovieCard
           key={movie._id}
