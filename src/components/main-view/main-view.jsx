@@ -8,25 +8,68 @@ import { ProfileView } from "../profile-view/profile-view";
 import { Row } from "react-bootstrap";
 import { Col } from "react-bootstrap";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import axios from 'axios';
 
 export const MainView = () => {
   const [movies, setMovies] = useState([]);
-  const [user, setUser] = useState(null);
-  const [token, setToken] = useState(null);
-  const [favorites, setFavorites] = useState([]);
-  console.log(movies)
-  
-  const handleFavoriteToggle = (movieId) => {
-    let updatedFavorites;
-    
-    if (favorites.includes(movieId)) {
-      updatedFavorites = favorites.filter(id => id !== movieId);
-    } else {
-      updatedFavorites = [...favorites, movieId];
-    }
+  const storedUser = JSON.parse(localStorage.getItem('user'));
+  const storedToken = localStorage.getItem('token');
+  const [user, setUser] = useState(storedUser ? storedUser : null);
+  const [token, setToken] = useState(storedToken ? storedToken : null);
+    console.log(user)
 
-    setFavorites(updatedFavorites);
-  };
+  async function getUser() {
+    try {
+      const response = await fetch(`https://duncanflixapi-2df251ca79e4.herokuapp.com/users/${user.Username}`, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      setUser(data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  // Add movie to users favorite list
+  async function handleAddToFavorites(movie) {
+    try {
+      const response = await fetch(`https://duncanflixapi-2df251ca79e4.herokuapp.com/users/${user.Username}/movies/${movie._id}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + token
+        }
+      });
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return getUser();
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  // Delete movie from users favorites
+  async function handleRemoveFromFavorites(movie) {
+    return await axios
+      .delete(`https://duncanflixapi-2df251ca79e4.herokuapp.com/users/${user.Username}/${movie._id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((response) => {
+        return getUser();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 
   async function fetchMovies(token) {
     try {
@@ -54,7 +97,7 @@ export const MainView = () => {
           imagepath: doc.ImagePath,
           actors: doc.Actors
         };
-      });      
+      });
       console.log("Fetched movies:", movies);
       setMovies(movies);
     } catch (error) {
@@ -76,10 +119,11 @@ export const MainView = () => {
         onLoggedOut={() => {
           setUser(null);
           setToken(null);
+          localStorage.clear();
         }}
       />
-    <Row className="justify-content-md-center">
-      <Routes>
+      <Row className="justify-content-md-center">
+        <Routes>
           <Route
             path="/signup"
             element={
@@ -103,9 +147,9 @@ export const MainView = () => {
                     onLoggedIn={(user, token) => {
                       setUser(user);
                       setToken(token);
-                    }} 
-                  />  
-                </Col>                
+                    }}
+                  />
+                </Col>
               )
             }
           />
@@ -118,7 +162,7 @@ export const MainView = () => {
                 <Col>The list is empty!</Col>
               ) : (
                 <Col className="mb-5" md={8}>
-                  <MovieView movies={movies}/>
+                  <MovieView movies={movies} />
                 </Col>
               )
             }
@@ -135,23 +179,26 @@ export const MainView = () => {
                   {movies.map((movie) => (
                     <Col className="mb-4" key={movie._id} md={3}>
                       <MovieCard
+                        user={user}
                         movie={movie}
                         onMovieClick={(newSelectedMovie) => {
-                          setSelectedMovie(newSelectedMovie);                        
+                          setSelectedMovie(newSelectedMovie);
                         }}
-                        isFavorite={favorites.includes(movie._id)}
-                        onFavoriteToggle={handleFavoriteToggle}
+                        handleAddToFavorites={() => handleAddToFavorites(movie)}
+                        handleRemoveFromFavorites={() => handleRemoveFromFavorites(movie)}
                       />
                     </Col>
                   ))}
                 </>
-              )            
+              )
             }
           />
           <Route
             path="/profile"
-            element={<ProfileView movies={movies} />}
-          />
+            element={<ProfileView user={user} movies={movies}
+              handleAddToFavorites={() => handleAddToFavorites}
+              handleRemoveFromFavorites={() => handleRemoveFromFavorites} />}
+          />actors
         </Routes>
       </Row>
     </BrowserRouter>

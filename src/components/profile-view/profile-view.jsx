@@ -4,88 +4,20 @@ import { MovieCard } from "../movie-card/movie-card";
 import { Link } from "react-router-dom"
 import UserInfo from './user-info';
 
-export const ProfileView = ({ movies, user }) => {
-  const localUser = JSON.parse(localStorage.getItem("user"));
-    console.log(localUser);
-    if (localUser && typeof localUser === 'object' && localUser.FavoriteMovies) {
-      console.log('localUser has FavoriteMovies property');
-    } else {
-      console.log('localUser does not have FavoriteMovies property');
-    }
-  const userId = localUser ? localUser._id : null;
-    console.log(userId);
-  const token = localStorage.getItem("token");
-    console.log(token);
-  const fav = movies.filter((movie) => {
-    return localUser && localUser.FavoriteMovies && localUser.FavoriteMovies.includes(movie._id);
-  });
-  console.log(localUser.FavoriteMovies)
+export const ProfileView = ({ user, movies, handleRemoveFromFavorites }) => {
 
-  const [username, setUsername] = useState(localUser?.Username || "");
+  const [username, setUsername] = useState(user.Username || "");
   const [password, setPassword] = useState("");
-  const [email, setEmail] = useState(localUser?.Email || "");
-  const [birthday, setBirthday] = useState(localUser?.Birthday ? localUser.Birthday.split('T')[0] : "");
-  const [favorites, setFavorites] = useState(localUser?.FavoriteMovies || []);
-  const [currentUser, setCurrentUser] = useState(localUser);
+  const [email, setEmail] = useState(user.Email || "");
+  const [birthday, setBirthday] = useState(user.Birthday ? user.Birthday.split('T')[0] : "");
+  const [favorites, setFavorites] = useState(user.FavoriteMovies);  
+  const [currentUser, setCurrentUser] = useState(user);
   const [error, setError] = useState(null);
-    console.log(favorites);
+    console.log(favorites);    
 
-    useEffect(() => {
-      console.log('favorites updated:', favorites);
-    }, [favorites]);
-
-  const handleFavoriteToggle = (movieId) => {
-    console.log(favorites);
-    if(!favorites) {
-      setFavorites([movieId]);
-      return;
-    }
-
-    let updatedFavorites;
-    
-    if (favorites.includes(movieId)) {
-      updatedFavorites = favorites.filter((id) => id !== movieId);
-    } else {
-      updatedFavorites = [...favorites, movieId];
-    }
-
-    setFavorites(updatedFavorites);
-  };
+  //generate list of the users favorites as objects array of favorites
   
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const token = localStorage.getItem('token');
-        const response = await fetch("https://duncanflixapi-2df251ca79e4.herokuapp.com/users", {
-          headers: { Authorization: `Bearer ${token}` }
-        });
-
-        if (!response.ok) {
-            throw new Error('Failed to fetch user data');
-          }     
-
-        const userData = await response.json();
-        console.log(userData);
-        setCurrentUser(userData);
-      } catch (err) {
-        console.error("Error fetching user data:", err);
-        setError(err);
-      }
-    };
-
-    fetchUser();
-  }, [userId]);
-
-  useEffect(() => {
-    if (localUser && localUser.FavoriteMovies) {
-      setFavorites(localUser.FavoriteMovies);
-    }
-  }, [localUser]);
  
-  useEffect(() => {
-    setFavorites(currentUser?.FavoriteMovies);
-  }, [currentUser]);
-  
   const handleSubmit = async (event) => {
     event.preventDefault();
   
@@ -101,7 +33,7 @@ export const ProfileView = ({ movies, user }) => {
     console.log("User ID:", userId);
   
     try {
-      const response = await fetch(`https://duncanflixapi-2df251ca79e4.herokuapp.com/users/${localUser.Username}`, {
+      const response = await fetch(`https://duncanflixapi-2df251ca79e4.herokuapp.com/users/${user.Username}`, {
         method: "PUT",
         body: JSON.stringify(data),
         headers: {
@@ -141,12 +73,12 @@ export const ProfileView = ({ movies, user }) => {
   const favoriteMovies = currentUser && currentUser.FavoriteMovies
   ? Array.from(currentUser.FavoriteMovies).map((movieId) => {
       const movie = movies.find((movie) => movie._id === movieId);
-      return (
+      return movie ? (
         <div key={movie._id}>
           <h4>{movie.Title}</h4>
           <p>{movie.Description}</p>
         </div>
-      );
+      ) : null;
     })
   : [];
   
@@ -200,17 +132,22 @@ export const ProfileView = ({ movies, user }) => {
         />
       </Form.Group>
       <Form.Group>
-      <Form.Label>Favorite Movies:</Form.Label>
-      console.log('favorites', favorites);
-      {movies.map(movie => (
-        <MovieCard
-          key={movie._id}
-          movie={movie}
-          isFavorite={favorites.includes(movie._id)}
-          onFavoriteToggle={() => handleFavoriteToggle(movie._id)}
-        />
-      ))}
-    </Form.Group>
+  <Form.Label>
+    <strong>Favorite Movies:</strong>
+  </Form.Label>
+  {favorites.map((movieId) => {
+    const movie = movies.find((movie) => movie._id === movieId);
+    return movie ? (
+      <MovieCard
+        key={movie._id}
+        user={currentUser}
+        movie={movie}
+        handleRemoveFromFavorites={ handleRemoveFromFavorites(movie) }
+        title={movie.Title || 'No Title'}
+      />
+    ) : null;
+  })}
+</Form.Group>
       {/* <Form.Group controlId="formFavorites">
         <Form.Label>
           <strong>Favorite Movies:</strong>

@@ -5,10 +5,12 @@ import { Link } from "react-router-dom";
 
 import "./movie-card.scss";
 
-export const MovieCard = ({ movie, isFavorite, onFavoriteToggle }) => {
-  const handleFavoriteToggle = () => {
-    onFavoriteToggle(movie._id);
-  };
+
+export const MovieCard = ({ user, movie, handleAddToFavorites, handleRemoveFromFavorites }) => {
+  const usersFavoriteMovies = user.FavoriteMovies.map((movie) => movie);
+  function isMovieAFavorite() {
+    return usersFavoriteMovies.includes(movie._id);
+  }
   
   return (
     <Card className="h-100">
@@ -18,36 +20,24 @@ export const MovieCard = ({ movie, isFavorite, onFavoriteToggle }) => {
         <Link to={`/movies/${encodeURIComponent(movie._id)}`}>
           <Button variant="link">Open</Button>
         </Link>
-        <Button
-          variant={isFavorite ? "danger" : "primary:"}
-          onClick={handleFavoriteToggle}
-        >
-          {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
-        </Button>
+        {isMovieAFavorite() ? (
+          <Button
+            variant="danger"
+            onClick={() => handleRemoveFromFavorites(movie)}
+          >
+            Remove from Favorites
+          </Button>
+        ) : (
+          <Button
+            variant="primary"
+            onClick={() => handleAddToFavorites(movie)}
+          >
+            Add to Favorites
+          </Button>
+        )}
       </Card.Body>
     </Card>
   );
-};
-
-MovieCard.propTypes = {
-  movie: PropTypes.shape({
-    _id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    genre: PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      description: PropTypes.string.isRequired
-    }).isRequired,
-    director: PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      bio: PropTypes.string.isRequired,
-      birth: PropTypes.string.isRequired
-    }).isRequired,
-    imagepath: PropTypes.string.isRequired,
-    actors: PropTypes.arrayOf(PropTypes.string).isRequired
-  }).isRequired,
-  isFavorite: PropTypes.bool.isRequired,
-  onFavoriteToggle: PropTypes.func.isRequired  
 };
 
 export default MovieCard;

@@ -67,3 +67,5 @@ export const LoginView =  ({ onLoggedIn }) => {
         </Form>
     );
 };
+
+export default LoginView;
