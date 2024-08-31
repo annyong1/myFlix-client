@@ -17,7 +17,19 @@ export const ProfileView = ({
 		user.Birthday ? user.Birthday.split('T')[0] : ''
 	);
 
-	//generate list of the users favorites as objects array of favorites
+  const handleDeleteProfile = async () => {
+    const response = await fetch(
+      `https://duncanflixapi-2df251ca79e4.herokuapp.com/users/${user.Username}`,
+      {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    window.location.href='/';
+  }
+
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 
@@ -75,6 +87,7 @@ export const ProfileView = ({
 	};
 
 	return (
+    <>
 		<Form onSubmit={handleSubmit}>
 			<Form.Group controlId='formUsername'>
 				<Form.Label>
@@ -137,11 +150,14 @@ export const ProfileView = ({
 					) : null;
 				})}
 			</Form.Group>
-			<div style={{ marginTop: '20px' }}></div>
-			<Button variant='primary' type='submit'>
+			<Button style={{ marginTop: '20px' }} variant='primary' type='submit'>
 				Edit Profile
 			</Button>
 		</Form>
+      <Button onClick={handleDeleteProfile} style={{ width: '150px' }} variant='danger' type='submit'>
+				Delete Profile
+			</Button>
+    </>
 	);
 };
 
