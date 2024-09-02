@@ -128,6 +128,26 @@ export const MainView = () => {
 		fetchMovies(token);
 	}, [token]);
 
+	const searchBar = document.getElementById('search-bar');
+	const movieList = document.getElementById('movie-list');
+	
+	searchBar.addEventListener('input', (e) => {
+	  const searchQuery = e.target.value.toLowerCase();
+	  const filteredMovies = movies.filter((movie) => {
+		return movie.title.toLowerCase().includes(searchQuery);
+	  });
+	  renderMovieList(filteredMovies);
+	});
+	
+	function renderMovieList(movies) {
+	  movieList.innerHTML = '';
+	  movies.forEach((movie) => {
+		const movieListItem = document.createElement('li');
+		movieListItem.textContent = movie.title;
+		movieList.appendChild(movieListItem);
+	  });
+	}
+
 	return (
 		<BrowserRouter>
 			<Row className='justify-content-md-center'>

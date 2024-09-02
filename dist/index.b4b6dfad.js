@@ -2954,7 +2954,7 @@ try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _client = require("react-dom/client");
-var _mainView = require("./components/main-view/main-view.js");
+var _mainView = require("./components/main-view/main-view");
 var _container = require("react-bootstrap/Container");
 var _containerDefault = parcelHelpers.interopDefault(_container);
 var _indexScss = require("./index.scss");
@@ -27286,6 +27286,23 @@ const MainView = ()=>{
     }, [
         token
     ]);
+    const searchBar = document.getElementById("search-bar");
+    const movieList = document.getElementById("movie-list");
+    searchBar.addEventListener("input", (e)=>{
+        const searchQuery = e.target.value.toLowerCase();
+        const filteredMovies = movies.filter((movie)=>{
+            return movie.title.toLowerCase().includes(searchQuery);
+        });
+        renderMovieList(filteredMovies);
+    });
+    function renderMovieList(movies) {
+        movieList.innerHTML = "";
+        movies.forEach((movie)=>{
+            const movieListItem = document.createElement("li");
+            movieListItem.textContent = movie.title;
+            movieList.appendChild(movieListItem);
+        });
+    }
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.BrowserRouter), {
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
             className: "justify-content-md-center",
@@ -27300,7 +27317,7 @@ const MainView = ()=>{
                     }
                 }, void 0, false, {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 134,
+                    lineNumber: 154,
                     columnNumber: 5
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Routes), {
@@ -27312,23 +27329,23 @@ const MainView = ()=>{
                                 md: 5,
                                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _signupView.SignupView), {}, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 149,
+                                    lineNumber: 169,
                                     columnNumber: 10
                                 }, void 0)
                             }, void 0, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 148,
+                                lineNumber: 168,
                                 columnNumber: 9
                             }, void 0) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Navigate), {
                                 to: "/"
                             }, void 0, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 152,
+                                lineNumber: 172,
                                 columnNumber: 9
                             }, void 0)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 144,
+                            lineNumber: 164,
                             columnNumber: 6
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -27337,7 +27354,7 @@ const MainView = ()=>{
                                 to: "/"
                             }, void 0, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 160,
+                                lineNumber: 180,
                                 columnNumber: 9
                             }, void 0) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
                                 md: 5,
@@ -27348,17 +27365,17 @@ const MainView = ()=>{
                                     }
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 163,
+                                    lineNumber: 183,
                                     columnNumber: 10
                                 }, void 0)
                             }, void 0, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 162,
+                                lineNumber: 182,
                                 columnNumber: 9
                             }, void 0)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 156,
+                            lineNumber: 176,
                             columnNumber: 6
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -27368,13 +27385,13 @@ const MainView = ()=>{
                                 replace: true
                             }, void 0, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 177,
+                                lineNumber: 197,
                                 columnNumber: 9
                             }, void 0) : movies.length === 0 ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
                                 children: "The list is empty!"
                             }, void 0, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 179,
+                                lineNumber: 199,
                                 columnNumber: 9
                             }, void 0) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
                                 className: "mb-5",
@@ -27383,17 +27400,17 @@ const MainView = ()=>{
                                     movies: movies
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 182,
+                                    lineNumber: 202,
                                     columnNumber: 10
                                 }, void 0)
                             }, void 0, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 181,
+                                lineNumber: 201,
                                 columnNumber: 9
                             }, void 0)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 173,
+                            lineNumber: 193,
                             columnNumber: 6
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -27403,13 +27420,13 @@ const MainView = ()=>{
                                 replace: true
                             }, void 0, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 191,
+                                lineNumber: 211,
                                 columnNumber: 9
                             }, void 0) : movies.length === 0 ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
                                 children: "The list is empty!"
                             }, void 0, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 193,
+                                lineNumber: 213,
                                 columnNumber: 9
                             }, void 0) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
                                 children: movies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
@@ -27425,18 +27442,18 @@ const MainView = ()=>{
                                             handleRemoveFromFavorites: ()=>handleRemoveFromFavorites(movie)
                                         }, void 0, false, {
                                             fileName: "src/components/main-view/main-view.jsx",
-                                            lineNumber: 198,
+                                            lineNumber: 218,
                                             columnNumber: 12
                                         }, void 0)
                                     }, movie._id, false, {
                                         fileName: "src/components/main-view/main-view.jsx",
-                                        lineNumber: 197,
+                                        lineNumber: 217,
                                         columnNumber: 11
                                     }, void 0))
                             }, void 0, false)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 187,
+                            lineNumber: 207,
                             columnNumber: 6
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -27449,30 +27466,30 @@ const MainView = ()=>{
                                 handleRemoveFromFavorites: handleRemoveFromFavorites
                             }, void 0, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 218,
+                                lineNumber: 238,
                                 columnNumber: 8
                             }, void 0)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 215,
+                            lineNumber: 235,
                             columnNumber: 6
                         }, undefined),
                         "actors"
                     ]
                 }, void 0, true, {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 143,
+                    lineNumber: 163,
                     columnNumber: 5
                 }, undefined)
             ]
         }, void 0, true, {
             fileName: "src/components/main-view/main-view.jsx",
-            lineNumber: 133,
+            lineNumber: 153,
             columnNumber: 4
         }, undefined)
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 132,
+        lineNumber: 152,
         columnNumber: 3
     }, undefined);
 };
@@ -28447,227 +28464,227 @@ parcelHelpers.export(exports, "ToastHeader", ()=>(0, _toastHeaderDefault.default
 parcelHelpers.export(exports, "ToggleButton", ()=>(0, _toggleButtonDefault.default));
 parcelHelpers.export(exports, "ToggleButtonGroup", ()=>(0, _toggleButtonGroupDefault.default));
 parcelHelpers.export(exports, "Tooltip", ()=>(0, _tooltipDefault.default));
-var _accordion = require("./Accordion.js");
+var _accordion = require("./Accordion");
 var _accordionDefault = parcelHelpers.interopDefault(_accordion);
-var _accordionContext = require("./AccordionContext.js");
+var _accordionContext = require("./AccordionContext");
 var _accordionContextDefault = parcelHelpers.interopDefault(_accordionContext);
-var _accordionCollapse = require("./AccordionCollapse.js");
+var _accordionCollapse = require("./AccordionCollapse");
 var _accordionCollapseDefault = parcelHelpers.interopDefault(_accordionCollapse);
-var _accordionButton = require("./AccordionButton.js");
+var _accordionButton = require("./AccordionButton");
 var _accordionButtonDefault = parcelHelpers.interopDefault(_accordionButton);
-var _accordionBody = require("./AccordionBody.js");
+var _accordionBody = require("./AccordionBody");
 var _accordionBodyDefault = parcelHelpers.interopDefault(_accordionBody);
-var _accordionHeader = require("./AccordionHeader.js");
+var _accordionHeader = require("./AccordionHeader");
 var _accordionHeaderDefault = parcelHelpers.interopDefault(_accordionHeader);
-var _accordionItem = require("./AccordionItem.js");
+var _accordionItem = require("./AccordionItem");
 var _accordionItemDefault = parcelHelpers.interopDefault(_accordionItem);
-var _alert = require("./Alert.js");
+var _alert = require("./Alert");
 var _alertDefault = parcelHelpers.interopDefault(_alert);
-var _alertHeading = require("./AlertHeading.js");
+var _alertHeading = require("./AlertHeading");
 var _alertHeadingDefault = parcelHelpers.interopDefault(_alertHeading);
-var _alertLink = require("./AlertLink.js");
+var _alertLink = require("./AlertLink");
 var _alertLinkDefault = parcelHelpers.interopDefault(_alertLink);
-var _anchor = require("./Anchor.js");
+var _anchor = require("./Anchor");
 var _anchorDefault = parcelHelpers.interopDefault(_anchor);
-var _badge = require("./Badge.js");
+var _badge = require("./Badge");
 var _badgeDefault = parcelHelpers.interopDefault(_badge);
-var _breadcrumb = require("./Breadcrumb.js");
+var _breadcrumb = require("./Breadcrumb");
 var _breadcrumbDefault = parcelHelpers.interopDefault(_breadcrumb);
-var _breadcrumbItem = require("./BreadcrumbItem.js");
+var _breadcrumbItem = require("./BreadcrumbItem");
 var _breadcrumbItemDefault = parcelHelpers.interopDefault(_breadcrumbItem);
-var _button = require("./Button.js");
+var _button = require("./Button");
 var _buttonDefault = parcelHelpers.interopDefault(_button);
-var _buttonGroup = require("./ButtonGroup.js");
+var _buttonGroup = require("./ButtonGroup");
 var _buttonGroupDefault = parcelHelpers.interopDefault(_buttonGroup);
-var _buttonToolbar = require("./ButtonToolbar.js");
+var _buttonToolbar = require("./ButtonToolbar");
 var _buttonToolbarDefault = parcelHelpers.interopDefault(_buttonToolbar);
-var _card = require("./Card.js");
+var _card = require("./Card");
 var _cardDefault = parcelHelpers.interopDefault(_card);
-var _cardBody = require("./CardBody.js");
+var _cardBody = require("./CardBody");
 var _cardBodyDefault = parcelHelpers.interopDefault(_cardBody);
-var _cardFooter = require("./CardFooter.js");
+var _cardFooter = require("./CardFooter");
 var _cardFooterDefault = parcelHelpers.interopDefault(_cardFooter);
-var _cardGroup = require("./CardGroup.js");
+var _cardGroup = require("./CardGroup");
 var _cardGroupDefault = parcelHelpers.interopDefault(_cardGroup);
-var _cardHeader = require("./CardHeader.js");
+var _cardHeader = require("./CardHeader");
 var _cardHeaderDefault = parcelHelpers.interopDefault(_cardHeader);
-var _cardImg = require("./CardImg.js");
+var _cardImg = require("./CardImg");
 var _cardImgDefault = parcelHelpers.interopDefault(_cardImg);
-var _cardImgOverlay = require("./CardImgOverlay.js");
+var _cardImgOverlay = require("./CardImgOverlay");
 var _cardImgOverlayDefault = parcelHelpers.interopDefault(_cardImgOverlay);
-var _cardLink = require("./CardLink.js");
+var _cardLink = require("./CardLink");
 var _cardLinkDefault = parcelHelpers.interopDefault(_cardLink);
-var _cardSubtitle = require("./CardSubtitle.js");
+var _cardSubtitle = require("./CardSubtitle");
 var _cardSubtitleDefault = parcelHelpers.interopDefault(_cardSubtitle);
-var _cardText = require("./CardText.js");
+var _cardText = require("./CardText");
 var _cardTextDefault = parcelHelpers.interopDefault(_cardText);
-var _cardTitle = require("./CardTitle.js");
+var _cardTitle = require("./CardTitle");
 var _cardTitleDefault = parcelHelpers.interopDefault(_cardTitle);
-var _carousel = require("./Carousel.js");
+var _carousel = require("./Carousel");
 var _carouselDefault = parcelHelpers.interopDefault(_carousel);
-var _carouselCaption = require("./CarouselCaption.js");
+var _carouselCaption = require("./CarouselCaption");
 var _carouselCaptionDefault = parcelHelpers.interopDefault(_carouselCaption);
-var _carouselItem = require("./CarouselItem.js");
+var _carouselItem = require("./CarouselItem");
 var _carouselItemDefault = parcelHelpers.interopDefault(_carouselItem);
-var _closeButton = require("./CloseButton.js");
+var _closeButton = require("./CloseButton");
 var _closeButtonDefault = parcelHelpers.interopDefault(_closeButton);
-var _col = require("./Col.js");
+var _col = require("./Col");
 var _colDefault = parcelHelpers.interopDefault(_col);
-var _collapse = require("./Collapse.js");
+var _collapse = require("./Collapse");
 var _collapseDefault = parcelHelpers.interopDefault(_collapse);
-var _container = require("./Container.js");
+var _container = require("./Container");
 var _containerDefault = parcelHelpers.interopDefault(_container);
-var _dropdown = require("./Dropdown.js");
+var _dropdown = require("./Dropdown");
 var _dropdownDefault = parcelHelpers.interopDefault(_dropdown);
-var _dropdownButton = require("./DropdownButton.js");
+var _dropdownButton = require("./DropdownButton");
 var _dropdownButtonDefault = parcelHelpers.interopDefault(_dropdownButton);
-var _dropdownDivider = require("./DropdownDivider.js");
+var _dropdownDivider = require("./DropdownDivider");
 var _dropdownDividerDefault = parcelHelpers.interopDefault(_dropdownDivider);
-var _dropdownHeader = require("./DropdownHeader.js");
+var _dropdownHeader = require("./DropdownHeader");
 var _dropdownHeaderDefault = parcelHelpers.interopDefault(_dropdownHeader);
-var _dropdownItem = require("./DropdownItem.js");
+var _dropdownItem = require("./DropdownItem");
 var _dropdownItemDefault = parcelHelpers.interopDefault(_dropdownItem);
-var _dropdownItemText = require("./DropdownItemText.js");
+var _dropdownItemText = require("./DropdownItemText");
 var _dropdownItemTextDefault = parcelHelpers.interopDefault(_dropdownItemText);
-var _dropdownMenu = require("./DropdownMenu.js");
+var _dropdownMenu = require("./DropdownMenu");
 var _dropdownMenuDefault = parcelHelpers.interopDefault(_dropdownMenu);
-var _dropdownToggle = require("./DropdownToggle.js");
+var _dropdownToggle = require("./DropdownToggle");
 var _dropdownToggleDefault = parcelHelpers.interopDefault(_dropdownToggle);
-var _fade = require("./Fade.js");
+var _fade = require("./Fade");
 var _fadeDefault = parcelHelpers.interopDefault(_fade);
-var _figure = require("./Figure.js");
+var _figure = require("./Figure");
 var _figureDefault = parcelHelpers.interopDefault(_figure);
-var _figureCaption = require("./FigureCaption.js");
+var _figureCaption = require("./FigureCaption");
 var _figureCaptionDefault = parcelHelpers.interopDefault(_figureCaption);
-var _figureImage = require("./FigureImage.js");
+var _figureImage = require("./FigureImage");
 var _figureImageDefault = parcelHelpers.interopDefault(_figureImage);
-var _form = require("./Form.js");
+var _form = require("./Form");
 var _formDefault = parcelHelpers.interopDefault(_form);
-var _formControl = require("./FormControl.js");
+var _formControl = require("./FormControl");
 var _formControlDefault = parcelHelpers.interopDefault(_formControl);
-var _formCheck = require("./FormCheck.js");
+var _formCheck = require("./FormCheck");
 var _formCheckDefault = parcelHelpers.interopDefault(_formCheck);
-var _formFloating = require("./FormFloating.js");
+var _formFloating = require("./FormFloating");
 var _formFloatingDefault = parcelHelpers.interopDefault(_formFloating);
-var _floatingLabel = require("./FloatingLabel.js");
+var _floatingLabel = require("./FloatingLabel");
 var _floatingLabelDefault = parcelHelpers.interopDefault(_floatingLabel);
-var _formGroup = require("./FormGroup.js");
+var _formGroup = require("./FormGroup");
 var _formGroupDefault = parcelHelpers.interopDefault(_formGroup);
-var _formLabel = require("./FormLabel.js");
+var _formLabel = require("./FormLabel");
 var _formLabelDefault = parcelHelpers.interopDefault(_formLabel);
-var _formText = require("./FormText.js");
+var _formText = require("./FormText");
 var _formTextDefault = parcelHelpers.interopDefault(_formText);
-var _formSelect = require("./FormSelect.js");
+var _formSelect = require("./FormSelect");
 var _formSelectDefault = parcelHelpers.interopDefault(_formSelect);
-var _image = require("./Image.js");
+var _image = require("./Image");
 var _imageDefault = parcelHelpers.interopDefault(_image);
-var _inputGroup = require("./InputGroup.js");
+var _inputGroup = require("./InputGroup");
 var _inputGroupDefault = parcelHelpers.interopDefault(_inputGroup);
-var _listGroup = require("./ListGroup.js");
+var _listGroup = require("./ListGroup");
 var _listGroupDefault = parcelHelpers.interopDefault(_listGroup);
-var _listGroupItem = require("./ListGroupItem.js");
+var _listGroupItem = require("./ListGroupItem");
 var _listGroupItemDefault = parcelHelpers.interopDefault(_listGroupItem);
-var _modal = require("./Modal.js");
+var _modal = require("./Modal");
 var _modalDefault = parcelHelpers.interopDefault(_modal);
-var _modalBody = require("./ModalBody.js");
+var _modalBody = require("./ModalBody");
 var _modalBodyDefault = parcelHelpers.interopDefault(_modalBody);
-var _modalDialog = require("./ModalDialog.js");
+var _modalDialog = require("./ModalDialog");
 var _modalDialogDefault = parcelHelpers.interopDefault(_modalDialog);
-var _modalFooter = require("./ModalFooter.js");
+var _modalFooter = require("./ModalFooter");
 var _modalFooterDefault = parcelHelpers.interopDefault(_modalFooter);
-var _modalHeader = require("./ModalHeader.js");
+var _modalHeader = require("./ModalHeader");
 var _modalHeaderDefault = parcelHelpers.interopDefault(_modalHeader);
-var _modalTitle = require("./ModalTitle.js");
+var _modalTitle = require("./ModalTitle");
 var _modalTitleDefault = parcelHelpers.interopDefault(_modalTitle);
-var _nav = require("./Nav.js");
+var _nav = require("./Nav");
 var _navDefault = parcelHelpers.interopDefault(_nav);
-var _navbar = require("./Navbar.js");
+var _navbar = require("./Navbar");
 var _navbarDefault = parcelHelpers.interopDefault(_navbar);
-var _navbarBrand = require("./NavbarBrand.js");
+var _navbarBrand = require("./NavbarBrand");
 var _navbarBrandDefault = parcelHelpers.interopDefault(_navbarBrand);
-var _navbarCollapse = require("./NavbarCollapse.js");
+var _navbarCollapse = require("./NavbarCollapse");
 var _navbarCollapseDefault = parcelHelpers.interopDefault(_navbarCollapse);
-var _navbarOffcanvas = require("./NavbarOffcanvas.js");
+var _navbarOffcanvas = require("./NavbarOffcanvas");
 var _navbarOffcanvasDefault = parcelHelpers.interopDefault(_navbarOffcanvas);
-var _navbarText = require("./NavbarText.js");
+var _navbarText = require("./NavbarText");
 var _navbarTextDefault = parcelHelpers.interopDefault(_navbarText);
-var _navbarToggle = require("./NavbarToggle.js");
+var _navbarToggle = require("./NavbarToggle");
 var _navbarToggleDefault = parcelHelpers.interopDefault(_navbarToggle);
-var _navDropdown = require("./NavDropdown.js");
+var _navDropdown = require("./NavDropdown");
 var _navDropdownDefault = parcelHelpers.interopDefault(_navDropdown);
-var _navItem = require("./NavItem.js");
+var _navItem = require("./NavItem");
 var _navItemDefault = parcelHelpers.interopDefault(_navItem);
-var _navLink = require("./NavLink.js");
+var _navLink = require("./NavLink");
 var _navLinkDefault = parcelHelpers.interopDefault(_navLink);
-var _offcanvas = require("./Offcanvas.js");
+var _offcanvas = require("./Offcanvas");
 var _offcanvasDefault = parcelHelpers.interopDefault(_offcanvas);
-var _offcanvasBody = require("./OffcanvasBody.js");
+var _offcanvasBody = require("./OffcanvasBody");
 var _offcanvasBodyDefault = parcelHelpers.interopDefault(_offcanvasBody);
-var _offcanvasHeader = require("./OffcanvasHeader.js");
+var _offcanvasHeader = require("./OffcanvasHeader");
 var _offcanvasHeaderDefault = parcelHelpers.interopDefault(_offcanvasHeader);
-var _offcanvasTitle = require("./OffcanvasTitle.js");
+var _offcanvasTitle = require("./OffcanvasTitle");
 var _offcanvasTitleDefault = parcelHelpers.interopDefault(_offcanvasTitle);
-var _offcanvasToggling = require("./OffcanvasToggling.js");
+var _offcanvasToggling = require("./OffcanvasToggling");
 var _offcanvasTogglingDefault = parcelHelpers.interopDefault(_offcanvasToggling);
-var _overlay = require("./Overlay.js");
+var _overlay = require("./Overlay");
 var _overlayDefault = parcelHelpers.interopDefault(_overlay);
-var _overlayTrigger = require("./OverlayTrigger.js");
+var _overlayTrigger = require("./OverlayTrigger");
 var _overlayTriggerDefault = parcelHelpers.interopDefault(_overlayTrigger);
-var _pageItem = require("./PageItem.js");
+var _pageItem = require("./PageItem");
 var _pageItemDefault = parcelHelpers.interopDefault(_pageItem);
-var _pagination = require("./Pagination.js");
+var _pagination = require("./Pagination");
 var _paginationDefault = parcelHelpers.interopDefault(_pagination);
-var _placeholder = require("./Placeholder.js");
+var _placeholder = require("./Placeholder");
 var _placeholderDefault = parcelHelpers.interopDefault(_placeholder);
-var _placeholderButton = require("./PlaceholderButton.js");
+var _placeholderButton = require("./PlaceholderButton");
 var _placeholderButtonDefault = parcelHelpers.interopDefault(_placeholderButton);
-var _popover = require("./Popover.js");
+var _popover = require("./Popover");
 var _popoverDefault = parcelHelpers.interopDefault(_popover);
-var _popoverBody = require("./PopoverBody.js");
+var _popoverBody = require("./PopoverBody");
 var _popoverBodyDefault = parcelHelpers.interopDefault(_popoverBody);
-var _popoverHeader = require("./PopoverHeader.js");
+var _popoverHeader = require("./PopoverHeader");
 var _popoverHeaderDefault = parcelHelpers.interopDefault(_popoverHeader);
-var _progressBar = require("./ProgressBar.js");
+var _progressBar = require("./ProgressBar");
 var _progressBarDefault = parcelHelpers.interopDefault(_progressBar);
-var _ratio = require("./Ratio.js");
+var _ratio = require("./Ratio");
 var _ratioDefault = parcelHelpers.interopDefault(_ratio);
-var _row = require("./Row.js");
+var _row = require("./Row");
 var _rowDefault = parcelHelpers.interopDefault(_row);
-var _spinner = require("./Spinner.js");
+var _spinner = require("./Spinner");
 var _spinnerDefault = parcelHelpers.interopDefault(_spinner);
-var _splitButton = require("./SplitButton.js");
+var _splitButton = require("./SplitButton");
 var _splitButtonDefault = parcelHelpers.interopDefault(_splitButton);
-var _ssrprovider = require("./SSRProvider.js");
+var _ssrprovider = require("./SSRProvider");
 var _ssrproviderDefault = parcelHelpers.interopDefault(_ssrprovider);
-var _stack = require("./Stack.js");
+var _stack = require("./Stack");
 var _stackDefault = parcelHelpers.interopDefault(_stack);
-var _tab = require("./Tab.js");
+var _tab = require("./Tab");
 var _tabDefault = parcelHelpers.interopDefault(_tab);
-var _tabContainer = require("./TabContainer.js");
+var _tabContainer = require("./TabContainer");
 var _tabContainerDefault = parcelHelpers.interopDefault(_tabContainer);
-var _tabContent = require("./TabContent.js");
+var _tabContent = require("./TabContent");
 var _tabContentDefault = parcelHelpers.interopDefault(_tabContent);
-var _table = require("./Table.js");
+var _table = require("./Table");
 var _tableDefault = parcelHelpers.interopDefault(_table);
-var _tabPane = require("./TabPane.js");
+var _tabPane = require("./TabPane");
 var _tabPaneDefault = parcelHelpers.interopDefault(_tabPane);
-var _tabs = require("./Tabs.js");
+var _tabs = require("./Tabs");
 var _tabsDefault = parcelHelpers.interopDefault(_tabs);
-var _themeProvider = require("./ThemeProvider.js");
+var _themeProvider = require("./ThemeProvider");
 var _themeProviderDefault = parcelHelpers.interopDefault(_themeProvider);
-var _toast = require("./Toast.js");
+var _toast = require("./Toast");
 var _toastDefault = parcelHelpers.interopDefault(_toast);
-var _toastBody = require("./ToastBody.js");
+var _toastBody = require("./ToastBody");
 var _toastBodyDefault = parcelHelpers.interopDefault(_toastBody);
-var _toastContainer = require("./ToastContainer.js");
+var _toastContainer = require("./ToastContainer");
 var _toastContainerDefault = parcelHelpers.interopDefault(_toastContainer);
-var _toastHeader = require("./ToastHeader.js");
+var _toastHeader = require("./ToastHeader");
 var _toastHeaderDefault = parcelHelpers.interopDefault(_toastHeader);
-var _toggleButton = require("./ToggleButton.js");
+var _toggleButton = require("./ToggleButton");
 var _toggleButtonDefault = parcelHelpers.interopDefault(_toggleButton);
-var _toggleButtonGroup = require("./ToggleButtonGroup.js");
+var _toggleButtonGroup = require("./ToggleButtonGroup");
 var _toggleButtonGroupDefault = parcelHelpers.interopDefault(_toggleButtonGroup);
-var _tooltip = require("./Tooltip.js");
+var _tooltip = require("./Tooltip");
 var _tooltipDefault = parcelHelpers.interopDefault(_tooltip);
 
 },{"./Accordion":false,"./AccordionContext":false,"./AccordionCollapse":false,"./AccordionButton":false,"./AccordionBody":false,"./AccordionHeader":false,"./AccordionItem":false,"./Alert":false,"./AlertHeading":false,"./AlertLink":false,"./Anchor":false,"./Badge":false,"./Breadcrumb":false,"./BreadcrumbItem":false,"./Button":"aPzUt","./ButtonGroup":false,"./ButtonToolbar":false,"./Card":"lAynp","./CardBody":false,"./CardFooter":false,"./CardGroup":false,"./CardHeader":false,"./CardImg":false,"./CardImgOverlay":false,"./CardLink":false,"./CardSubtitle":false,"./CardText":false,"./CardTitle":false,"./Carousel":false,"./CarouselCaption":false,"./CarouselItem":false,"./CloseButton":false,"./Col":"2L2I6","./Collapse":false,"./Container":false,"./Dropdown":false,"./DropdownButton":false,"./DropdownDivider":false,"./DropdownHeader":false,"./DropdownItem":false,"./DropdownItemText":false,"./DropdownMenu":false,"./DropdownToggle":false,"./Fade":false,"./Figure":false,"./FigureCaption":false,"./FigureImage":false,"./Form":"iBZ80","./FormControl":false,"./FormCheck":false,"./FormFloating":false,"./FloatingLabel":false,"./FormGroup":false,"./FormLabel":false,"./FormText":false,"./FormSelect":false,"./Image":false,"./InputGroup":false,"./ListGroup":false,"./ListGroupItem":false,"./Modal":false,"./ModalBody":false,"./ModalDialog":false,"./ModalFooter":false,"./ModalHeader":false,"./ModalTitle":false,"./Nav":"cXyL2","./Navbar":"1mHjo","./NavbarBrand":false,"./NavbarCollapse":false,"./NavbarOffcanvas":false,"./NavbarText":false,"./NavbarToggle":false,"./NavDropdown":false,"./NavItem":false,"./NavLink":false,"./Offcanvas":false,"./OffcanvasBody":false,"./OffcanvasHeader":false,"./OffcanvasTitle":false,"./OffcanvasToggling":false,"./Overlay":false,"./OverlayTrigger":false,"./PageItem":false,"./Pagination":false,"./Placeholder":false,"./PlaceholderButton":false,"./Popover":false,"./PopoverBody":false,"./PopoverHeader":false,"./ProgressBar":false,"./Ratio":false,"./Row":"cMC39","./Spinner":false,"./SplitButton":false,"./SSRProvider":false,"./Stack":false,"./Tab":false,"./TabContainer":false,"./TabContent":false,"./Table":false,"./TabPane":false,"./Tabs":false,"./ThemeProvider":false,"./Toast":false,"./ToastBody":false,"./ToastContainer":false,"./ToastHeader":false,"./ToggleButton":false,"./ToggleButtonGroup":false,"./Tooltip":false,"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"aPzUt":[function(require,module,exports) {
@@ -28677,7 +28694,7 @@ var _classnames = require("classnames");
 var _classnamesDefault = parcelHelpers.interopDefault(_classnames);
 var _react = require("react");
 var _button = require("@restart/ui/Button");
-var _themeProvider = require("./ThemeProvider.js");
+var _themeProvider = require("./ThemeProvider");
 var _jsxRuntime = require("react/jsx-runtime");
 "use client";
 const Button = /*#__PURE__*/ _react.forwardRef(({ as, bsPrefix, variant = "primary", size, active = false, disabled = false, className, ...props }, ref)=>{
@@ -29796,24 +29813,24 @@ parcelHelpers.defineInteropFlag(exports);
 var _classnames = require("classnames");
 var _classnamesDefault = parcelHelpers.interopDefault(_classnames);
 var _react = require("react");
-var _themeProvider = require("./ThemeProvider.js");
-var _cardBody = require("./CardBody.js");
+var _themeProvider = require("./ThemeProvider");
+var _cardBody = require("./CardBody");
 var _cardBodyDefault = parcelHelpers.interopDefault(_cardBody);
-var _cardFooter = require("./CardFooter.js");
+var _cardFooter = require("./CardFooter");
 var _cardFooterDefault = parcelHelpers.interopDefault(_cardFooter);
-var _cardHeader = require("./CardHeader.js");
+var _cardHeader = require("./CardHeader");
 var _cardHeaderDefault = parcelHelpers.interopDefault(_cardHeader);
-var _cardImg = require("./CardImg.js");
+var _cardImg = require("./CardImg");
 var _cardImgDefault = parcelHelpers.interopDefault(_cardImg);
-var _cardImgOverlay = require("./CardImgOverlay.js");
+var _cardImgOverlay = require("./CardImgOverlay");
 var _cardImgOverlayDefault = parcelHelpers.interopDefault(_cardImgOverlay);
-var _cardLink = require("./CardLink.js");
+var _cardLink = require("./CardLink");
 var _cardLinkDefault = parcelHelpers.interopDefault(_cardLink);
-var _cardSubtitle = require("./CardSubtitle.js");
+var _cardSubtitle = require("./CardSubtitle");
 var _cardSubtitleDefault = parcelHelpers.interopDefault(_cardSubtitle);
-var _cardText = require("./CardText.js");
+var _cardText = require("./CardText");
 var _cardTextDefault = parcelHelpers.interopDefault(_cardText);
-var _cardTitle = require("./CardTitle.js");
+var _cardTitle = require("./CardTitle");
 var _cardTitleDefault = parcelHelpers.interopDefault(_cardTitle);
 var _jsxRuntime = require("react/jsx-runtime");
 "use client";
@@ -29848,7 +29865,7 @@ parcelHelpers.defineInteropFlag(exports);
 var _react = require("react");
 var _classnames = require("classnames");
 var _classnamesDefault = parcelHelpers.interopDefault(_classnames);
-var _themeProvider = require("./ThemeProvider.js");
+var _themeProvider = require("./ThemeProvider");
 var _jsxRuntime = require("react/jsx-runtime");
 "use client";
 const CardBody = /*#__PURE__*/ _react.forwardRef(({ className, bsPrefix, as: Component = "div", ...props }, ref)=>{
@@ -29868,7 +29885,7 @@ parcelHelpers.defineInteropFlag(exports);
 var _react = require("react");
 var _classnames = require("classnames");
 var _classnamesDefault = parcelHelpers.interopDefault(_classnames);
-var _themeProvider = require("./ThemeProvider.js");
+var _themeProvider = require("./ThemeProvider");
 var _jsxRuntime = require("react/jsx-runtime");
 "use client";
 const CardFooter = /*#__PURE__*/ _react.forwardRef(({ className, bsPrefix, as: Component = "div", ...props }, ref)=>{
@@ -29888,8 +29905,8 @@ parcelHelpers.defineInteropFlag(exports);
 var _classnames = require("classnames");
 var _classnamesDefault = parcelHelpers.interopDefault(_classnames);
 var _react = require("react");
-var _themeProvider = require("./ThemeProvider.js");
-var _cardHeaderContext = require("./CardHeaderContext.js");
+var _themeProvider = require("./ThemeProvider");
+var _cardHeaderContext = require("./CardHeaderContext");
 var _cardHeaderContextDefault = parcelHelpers.interopDefault(_cardHeaderContext);
 var _jsxRuntime = require("react/jsx-runtime");
 "use client";
@@ -29928,7 +29945,7 @@ parcelHelpers.defineInteropFlag(exports);
 var _classnames = require("classnames");
 var _classnamesDefault = parcelHelpers.interopDefault(_classnames);
 var _react = require("react");
-var _themeProvider = require("./ThemeProvider.js");
+var _themeProvider = require("./ThemeProvider");
 var _jsxRuntime = require("react/jsx-runtime");
 "use client";
 const CardImg = /*#__PURE__*/ _react.forwardRef(// Need to define the default "as" during prop destructuring to be compatible with styled-components github.com/react-bootstrap/react-bootstrap/issues/3595
@@ -29949,7 +29966,7 @@ parcelHelpers.defineInteropFlag(exports);
 var _react = require("react");
 var _classnames = require("classnames");
 var _classnamesDefault = parcelHelpers.interopDefault(_classnames);
-var _themeProvider = require("./ThemeProvider.js");
+var _themeProvider = require("./ThemeProvider");
 var _jsxRuntime = require("react/jsx-runtime");
 "use client";
 const CardImgOverlay = /*#__PURE__*/ _react.forwardRef(({ className, bsPrefix, as: Component = "div", ...props }, ref)=>{
@@ -29969,7 +29986,7 @@ parcelHelpers.defineInteropFlag(exports);
 var _react = require("react");
 var _classnames = require("classnames");
 var _classnamesDefault = parcelHelpers.interopDefault(_classnames);
-var _themeProvider = require("./ThemeProvider.js");
+var _themeProvider = require("./ThemeProvider");
 var _jsxRuntime = require("react/jsx-runtime");
 "use client";
 const CardLink = /*#__PURE__*/ _react.forwardRef(({ className, bsPrefix, as: Component = "a", ...props }, ref)=>{
@@ -29989,8 +30006,8 @@ parcelHelpers.defineInteropFlag(exports);
 var _react = require("react");
 var _classnames = require("classnames");
 var _classnamesDefault = parcelHelpers.interopDefault(_classnames);
-var _themeProvider = require("./ThemeProvider.js");
-var _divWithClassName = require("./divWithClassName.js");
+var _themeProvider = require("./ThemeProvider");
+var _divWithClassName = require("./divWithClassName");
 var _divWithClassNameDefault = parcelHelpers.interopDefault(_divWithClassName);
 var _jsxRuntime = require("react/jsx-runtime");
 "use client";
@@ -30025,7 +30042,7 @@ parcelHelpers.defineInteropFlag(exports);
 var _react = require("react");
 var _classnames = require("classnames");
 var _classnamesDefault = parcelHelpers.interopDefault(_classnames);
-var _themeProvider = require("./ThemeProvider.js");
+var _themeProvider = require("./ThemeProvider");
 var _jsxRuntime = require("react/jsx-runtime");
 "use client";
 const CardText = /*#__PURE__*/ _react.forwardRef(({ className, bsPrefix, as: Component = "p", ...props }, ref)=>{
@@ -30045,8 +30062,8 @@ parcelHelpers.defineInteropFlag(exports);
 var _react = require("react");
 var _classnames = require("classnames");
 var _classnamesDefault = parcelHelpers.interopDefault(_classnames);
-var _themeProvider = require("./ThemeProvider.js");
-var _divWithClassName = require("./divWithClassName.js");
+var _themeProvider = require("./ThemeProvider");
+var _divWithClassName = require("./divWithClassName");
 var _divWithClassNameDefault = parcelHelpers.interopDefault(_divWithClassName);
 var _jsxRuntime = require("react/jsx-runtime");
 "use client";
@@ -30100,7 +30117,7 @@ parcelHelpers.export(exports, "useCol", ()=>useCol);
 var _classnames = require("classnames");
 var _classnamesDefault = parcelHelpers.interopDefault(_classnames);
 var _react = require("react");
-var _themeProvider = require("./ThemeProvider.js");
+var _themeProvider = require("./ThemeProvider");
 var _jsxRuntime = require("react/jsx-runtime");
 "use client";
 function useCol({ as, bsPrefix, className, ...props }) {
@@ -30156,13 +30173,13 @@ var _cssDefault = parcelHelpers.interopDefault(_css);
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _transition = require("react-transition-group/Transition");
-var _transitionEndListener = require("./transitionEndListener.js");
+var _transitionEndListener = require("./transitionEndListener");
 var _transitionEndListenerDefault = parcelHelpers.interopDefault(_transitionEndListener);
-var _createChainedFunction = require("./createChainedFunction.js");
+var _createChainedFunction = require("./createChainedFunction");
 var _createChainedFunctionDefault = parcelHelpers.interopDefault(_createChainedFunction);
-var _triggerBrowserReflow = require("./triggerBrowserReflow.js");
+var _triggerBrowserReflow = require("./triggerBrowserReflow");
 var _triggerBrowserReflowDefault = parcelHelpers.interopDefault(_triggerBrowserReflow);
-var _transitionWrapper = require("./TransitionWrapper.js");
+var _transitionWrapper = require("./TransitionWrapper");
 var _transitionWrapperDefault = parcelHelpers.interopDefault(_transitionWrapper);
 var _jsxRuntime = require("react/jsx-runtime");
 const MARGINS = {
@@ -30252,11 +30269,11 @@ exports.default = Collapse;
 },{"classnames":"jocGM","dom-helpers/css":"klmhr","react":"21dqq","react-transition-group/Transition":"cKsrS","./transitionEndListener":"68oh7","./createChainedFunction":"1KNLM","./triggerBrowserReflow":"eWjs5","./TransitionWrapper":"jKUqZ","react/jsx-runtime":"6AEwr","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"klmhr":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _getComputedStyle = require("./getComputedStyle.js");
+var _getComputedStyle = require("./getComputedStyle");
 var _getComputedStyleDefault = parcelHelpers.interopDefault(_getComputedStyle);
-var _hyphenateStyle = require("./hyphenateStyle.js");
+var _hyphenateStyle = require("./hyphenateStyle");
 var _hyphenateStyleDefault = parcelHelpers.interopDefault(_hyphenateStyle);
-var _isTransform = require("./isTransform.js");
+var _isTransform = require("./isTransform");
 var _isTransformDefault = parcelHelpers.interopDefault(_isTransform);
 function style(node, property) {
     var css = "";
@@ -30277,7 +30294,7 @@ exports.default = style;
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>getComputedStyle);
-var _ownerWindow = require("./ownerWindow.js");
+var _ownerWindow = require("./ownerWindow");
 var _ownerWindowDefault = parcelHelpers.interopDefault(_ownerWindow);
 function getComputedStyle(node, psuedoElement) {
     return (0, _ownerWindowDefault.default)(node).getComputedStyle(node, psuedoElement);
@@ -30287,7 +30304,7 @@ function getComputedStyle(node, psuedoElement) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>ownerWindow);
-var _ownerDocument = require("./ownerDocument.js");
+var _ownerDocument = require("./ownerDocument");
 var _ownerDocumentDefault = parcelHelpers.interopDefault(_ownerDocument);
 function ownerWindow(node) {
     var doc = (0, _ownerDocumentDefault.default)(node);
@@ -30314,7 +30331,7 @@ function ownerDocument(node) {
  */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>hyphenateStyleName);
-var _hyphenate = require("./hyphenate.js");
+var _hyphenate = require("./hyphenate");
 var _hyphenateDefault = parcelHelpers.interopDefault(_hyphenate);
 var msPattern = /^ms-/;
 function hyphenateStyleName(string) {
@@ -30357,12 +30374,12 @@ var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _reactDom = require("react-dom");
 var _reactDomDefault = parcelHelpers.interopDefault(_reactDom);
-var _config = require("./config.js");
+var _config = require("./config");
 var _configDefault = parcelHelpers.interopDefault(_config);
-var _propTypes1 = require("./utils/PropTypes.js");
-var _transitionGroupContext = require("./TransitionGroupContext.js");
+var _propTypes1 = require("./utils/PropTypes");
+var _transitionGroupContext = require("./TransitionGroupContext");
 var _transitionGroupContextDefault = parcelHelpers.interopDefault(_transitionGroupContext);
-var _reflow = require("./utils/reflow.js");
+var _reflow = require("./utils/reflow");
 var UNMOUNTED = "unmounted";
 var EXITED = "exited";
 var ENTERING = "entering";
@@ -30971,11 +30988,11 @@ function transitionEndListener(element, handler) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>transitionEnd);
-var _css = require("./css.js");
+var _css = require("./css");
 var _cssDefault = parcelHelpers.interopDefault(_css);
-var _listen = require("./listen.js");
+var _listen = require("./listen");
 var _listenDefault = parcelHelpers.interopDefault(_listen);
-var _triggerEvent = require("./triggerEvent.js");
+var _triggerEvent = require("./triggerEvent");
 var _triggerEventDefault = parcelHelpers.interopDefault(_triggerEvent);
 function parseDuration(node) {
     var str = (0, _cssDefault.default)(node, "transitionDuration") || "";
@@ -31011,9 +31028,9 @@ function transitionEnd(element, handler, duration, padding) {
 },{"./css":"klmhr","./listen":"1i4e7","./triggerEvent":"lQ70W","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"1i4e7":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _addEventListener = require("./addEventListener.js");
+var _addEventListener = require("./addEventListener");
 var _addEventListenerDefault = parcelHelpers.interopDefault(_addEventListener);
-var _removeEventListener = require("./removeEventListener.js");
+var _removeEventListener = require("./removeEventListener");
 var _removeEventListenerDefault = parcelHelpers.interopDefault(_removeEventListener);
 function listen(node, eventName, handler, options) {
     (0, _addEventListenerDefault.default)(node, eventName, handler, options);
@@ -31028,7 +31045,7 @@ exports.default = listen;
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "optionsSupported", ()=>optionsSupported);
 parcelHelpers.export(exports, "onceSupported", ()=>onceSupported);
-var _canUseDOM = require("./canUseDOM.js");
+var _canUseDOM = require("./canUseDOM");
 var _canUseDOMDefault = parcelHelpers.interopDefault(_canUseDOM);
 var optionsSupported = false;
 var onceSupported = false;
@@ -31160,7 +31177,7 @@ var _transition = require("react-transition-group/Transition");
 var _transitionDefault = parcelHelpers.interopDefault(_transition);
 var _useMergedRefs = require("@restart/hooks/useMergedRefs");
 var _useMergedRefsDefault = parcelHelpers.interopDefault(_useMergedRefs);
-var _safeFindDOMNode = require("./safeFindDOMNode.js");
+var _safeFindDOMNode = require("./safeFindDOMNode");
 var _safeFindDOMNodeDefault = parcelHelpers.interopDefault(_safeFindDOMNode);
 var _jsxRuntime = require("react/jsx-runtime");
 "use client";
@@ -31273,7 +31290,7 @@ parcelHelpers.defineInteropFlag(exports);
 var _classnames = require("classnames");
 var _classnamesDefault = parcelHelpers.interopDefault(_classnames);
 var _react = require("react");
-var _themeProvider = require("./ThemeProvider.js");
+var _themeProvider = require("./ThemeProvider");
 var _jsxRuntime = require("react/jsx-runtime");
 "use client";
 const Container = /*#__PURE__*/ _react.forwardRef(({ bsPrefix, fluid = false, // Need to define the default "as" during prop destructuring to be compatible with styled-components github.com/react-bootstrap/react-bootstrap/issues/3595
@@ -31296,11 +31313,11 @@ var _classnames = require("classnames");
 var _classnamesDefault = parcelHelpers.interopDefault(_classnames);
 var _react = require("react");
 var _transition = require("react-transition-group/Transition");
-var _transitionEndListener = require("./transitionEndListener.js");
+var _transitionEndListener = require("./transitionEndListener");
 var _transitionEndListenerDefault = parcelHelpers.interopDefault(_transitionEndListener);
-var _triggerBrowserReflow = require("./triggerBrowserReflow.js");
+var _triggerBrowserReflow = require("./triggerBrowserReflow");
 var _triggerBrowserReflowDefault = parcelHelpers.interopDefault(_triggerBrowserReflow);
-var _transitionWrapper = require("./TransitionWrapper.js");
+var _transitionWrapper = require("./TransitionWrapper");
 var _transitionWrapperDefault = parcelHelpers.interopDefault(_transitionWrapper);
 var _jsxRuntime = require("react/jsx-runtime");
 const fadeStyles = {
@@ -31345,25 +31362,25 @@ var _classnamesDefault = parcelHelpers.interopDefault(_classnames);
 var _propTypes = require("prop-types");
 var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
 var _react = require("react");
-var _formCheck = require("./FormCheck.js");
+var _formCheck = require("./FormCheck");
 var _formCheckDefault = parcelHelpers.interopDefault(_formCheck);
-var _formControl = require("./FormControl.js");
+var _formControl = require("./FormControl");
 var _formControlDefault = parcelHelpers.interopDefault(_formControl);
-var _formFloating = require("./FormFloating.js");
+var _formFloating = require("./FormFloating");
 var _formFloatingDefault = parcelHelpers.interopDefault(_formFloating);
-var _formGroup = require("./FormGroup.js");
+var _formGroup = require("./FormGroup");
 var _formGroupDefault = parcelHelpers.interopDefault(_formGroup);
-var _formLabel = require("./FormLabel.js");
+var _formLabel = require("./FormLabel");
 var _formLabelDefault = parcelHelpers.interopDefault(_formLabel);
-var _formRange = require("./FormRange.js");
+var _formRange = require("./FormRange");
 var _formRangeDefault = parcelHelpers.interopDefault(_formRange);
-var _formSelect = require("./FormSelect.js");
+var _formSelect = require("./FormSelect");
 var _formSelectDefault = parcelHelpers.interopDefault(_formSelect);
-var _formText = require("./FormText.js");
+var _formText = require("./FormText");
 var _formTextDefault = parcelHelpers.interopDefault(_formText);
-var _switch = require("./Switch.js");
+var _switch = require("./Switch");
 var _switchDefault = parcelHelpers.interopDefault(_switch);
-var _floatingLabel = require("./FloatingLabel.js");
+var _floatingLabel = require("./FloatingLabel");
 var _floatingLabelDefault = parcelHelpers.interopDefault(_floatingLabel);
 var _jsxRuntime = require("react/jsx-runtime");
 const propTypes = {
@@ -31408,16 +31425,16 @@ parcelHelpers.defineInteropFlag(exports);
 var _classnames = require("classnames");
 var _classnamesDefault = parcelHelpers.interopDefault(_classnames);
 var _react = require("react");
-var _feedback = require("./Feedback.js");
+var _feedback = require("./Feedback");
 var _feedbackDefault = parcelHelpers.interopDefault(_feedback);
-var _formCheckInput = require("./FormCheckInput.js");
+var _formCheckInput = require("./FormCheckInput");
 var _formCheckInputDefault = parcelHelpers.interopDefault(_formCheckInput);
-var _formCheckLabel = require("./FormCheckLabel.js");
+var _formCheckLabel = require("./FormCheckLabel");
 var _formCheckLabelDefault = parcelHelpers.interopDefault(_formCheckLabel);
-var _formContext = require("./FormContext.js");
+var _formContext = require("./FormContext");
 var _formContextDefault = parcelHelpers.interopDefault(_formContext);
-var _themeProvider = require("./ThemeProvider.js");
-var _elementChildren = require("./ElementChildren.js");
+var _themeProvider = require("./ThemeProvider");
+var _elementChildren = require("./ElementChildren");
 var _jsxRuntime = require("react/jsx-runtime");
 "use client";
 const FormCheck = /*#__PURE__*/ _react.forwardRef(({ id, bsPrefix, bsSwitchPrefix, inline = false, reverse = false, disabled = false, isValid = false, isInvalid = false, feedbackTooltip = false, feedback, feedbackType, className, style, title = "", type = "checkbox", label, children, // Need to define the default "as" during prop destructuring to be compatible with styled-components github.com/react-bootstrap/react-bootstrap/issues/3595
@@ -31503,9 +31520,9 @@ parcelHelpers.defineInteropFlag(exports);
 var _classnames = require("classnames");
 var _classnamesDefault = parcelHelpers.interopDefault(_classnames);
 var _react = require("react");
-var _formContext = require("./FormContext.js");
+var _formContext = require("./FormContext");
 var _formContextDefault = parcelHelpers.interopDefault(_formContext);
-var _themeProvider = require("./ThemeProvider.js");
+var _themeProvider = require("./ThemeProvider");
 var _jsxRuntime = require("react/jsx-runtime");
 "use client";
 const FormCheckInput = /*#__PURE__*/ _react.forwardRef(({ id, bsPrefix, className, type = "checkbox", isValid = false, isInvalid = false, // Need to define the default "as" during prop destructuring to be compatible with styled-components github.com/react-bootstrap/react-bootstrap/issues/3595
@@ -31538,9 +31555,9 @@ parcelHelpers.defineInteropFlag(exports);
 var _classnames = require("classnames");
 var _classnamesDefault = parcelHelpers.interopDefault(_classnames);
 var _react = require("react");
-var _formContext = require("./FormContext.js");
+var _formContext = require("./FormContext");
 var _formContextDefault = parcelHelpers.interopDefault(_formContext);
-var _themeProvider = require("./ThemeProvider.js");
+var _themeProvider = require("./ThemeProvider");
 var _jsxRuntime = require("react/jsx-runtime");
 "use client";
 const FormCheckLabel = /*#__PURE__*/ _react.forwardRef(({ bsPrefix, className, htmlFor, ...props }, ref)=>{
@@ -31600,11 +31617,11 @@ var _classnamesDefault = parcelHelpers.interopDefault(_classnames);
 var _react = require("react");
 var _warning = require("warning");
 var _warningDefault = parcelHelpers.interopDefault(_warning);
-var _feedback = require("./Feedback.js");
+var _feedback = require("./Feedback");
 var _feedbackDefault = parcelHelpers.interopDefault(_feedback);
-var _formContext = require("./FormContext.js");
+var _formContext = require("./FormContext");
 var _formContextDefault = parcelHelpers.interopDefault(_formContext);
-var _themeProvider = require("./ThemeProvider.js");
+var _themeProvider = require("./ThemeProvider");
 var _jsxRuntime = require("react/jsx-runtime");
 "use client";
 const FormControl = /*#__PURE__*/ _react.forwardRef(({ bsPrefix, type, size, htmlSize, id, className, isValid = false, isInvalid = false, plaintext, readOnly, // Need to define the default "as" during prop destructuring to be compatible with styled-components github.com/react-bootstrap/react-bootstrap/issues/3595
@@ -31676,7 +31693,7 @@ parcelHelpers.defineInteropFlag(exports);
 var _react = require("react");
 var _classnames = require("classnames");
 var _classnamesDefault = parcelHelpers.interopDefault(_classnames);
-var _themeProvider = require("./ThemeProvider.js");
+var _themeProvider = require("./ThemeProvider");
 var _jsxRuntime = require("react/jsx-runtime");
 "use client";
 const FormFloating = /*#__PURE__*/ _react.forwardRef(({ className, bsPrefix, as: Component = "div", ...props }, ref)=>{
@@ -31694,7 +31711,7 @@ exports.default = FormFloating;
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _react = require("react");
-var _formContext = require("./FormContext.js");
+var _formContext = require("./FormContext");
 var _formContextDefault = parcelHelpers.interopDefault(_formContext);
 var _jsxRuntime = require("react/jsx-runtime");
 const FormGroup = /*#__PURE__*/ _react.forwardRef(({ controlId, // Need to define the default "as" during prop destructuring to be compatible with styled-components github.com/react-bootstrap/react-bootstrap/issues/3595
@@ -31723,11 +31740,11 @@ var _classnamesDefault = parcelHelpers.interopDefault(_classnames);
 var _react = require("react");
 var _warning = require("warning");
 var _warningDefault = parcelHelpers.interopDefault(_warning);
-var _col = require("./Col.js");
+var _col = require("./Col");
 var _colDefault = parcelHelpers.interopDefault(_col);
-var _formContext = require("./FormContext.js");
+var _formContext = require("./FormContext");
 var _formContextDefault = parcelHelpers.interopDefault(_formContext);
-var _themeProvider = require("./ThemeProvider.js");
+var _themeProvider = require("./ThemeProvider");
 var _jsxRuntime = require("react/jsx-runtime");
 "use client";
 const FormLabel = /*#__PURE__*/ _react.forwardRef(({ // Need to define the default "as" during prop destructuring to be compatible with styled-components github.com/react-bootstrap/react-bootstrap/issues/3595
@@ -31763,8 +31780,8 @@ parcelHelpers.defineInteropFlag(exports);
 var _classnames = require("classnames");
 var _classnamesDefault = parcelHelpers.interopDefault(_classnames);
 var _react = require("react");
-var _themeProvider = require("./ThemeProvider.js");
-var _formContext = require("./FormContext.js");
+var _themeProvider = require("./ThemeProvider");
+var _formContext = require("./FormContext");
 var _formContextDefault = parcelHelpers.interopDefault(_formContext);
 var _jsxRuntime = require("react/jsx-runtime");
 "use client";
@@ -31788,8 +31805,8 @@ parcelHelpers.defineInteropFlag(exports);
 var _classnames = require("classnames");
 var _classnamesDefault = parcelHelpers.interopDefault(_classnames);
 var _react = require("react");
-var _themeProvider = require("./ThemeProvider.js");
-var _formContext = require("./FormContext.js");
+var _themeProvider = require("./ThemeProvider");
+var _formContext = require("./FormContext");
 var _formContextDefault = parcelHelpers.interopDefault(_formContext);
 var _jsxRuntime = require("react/jsx-runtime");
 "use client";
@@ -31813,7 +31830,7 @@ parcelHelpers.defineInteropFlag(exports);
 var _classnames = require("classnames");
 var _classnamesDefault = parcelHelpers.interopDefault(_classnames);
 var _react = require("react");
-var _themeProvider = require("./ThemeProvider.js");
+var _themeProvider = require("./ThemeProvider");
 var _jsxRuntime = require("react/jsx-runtime");
 "use client";
 const FormText = /*#__PURE__*/ _react.forwardRef(// Need to define the default "as" during prop destructuring to be compatible with styled-components github.com/react-bootstrap/react-bootstrap/issues/3595
@@ -31832,7 +31849,7 @@ exports.default = FormText;
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _react = require("react");
-var _formCheck = require("./FormCheck.js");
+var _formCheck = require("./FormCheck");
 var _formCheckDefault = parcelHelpers.interopDefault(_formCheck);
 var _jsxRuntime = require("react/jsx-runtime");
 const Switch = /*#__PURE__*/ _react.forwardRef((props, ref)=>/*#__PURE__*/ (0, _jsxRuntime.jsx)((0, _formCheckDefault.default), {
@@ -31852,9 +31869,9 @@ parcelHelpers.defineInteropFlag(exports);
 var _classnames = require("classnames");
 var _classnamesDefault = parcelHelpers.interopDefault(_classnames);
 var _react = require("react");
-var _formGroup = require("./FormGroup.js");
+var _formGroup = require("./FormGroup");
 var _formGroupDefault = parcelHelpers.interopDefault(_formGroup);
-var _themeProvider = require("./ThemeProvider.js");
+var _themeProvider = require("./ThemeProvider");
 var _jsxRuntime = require("react/jsx-runtime");
 "use client";
 const FloatingLabel = /*#__PURE__*/ _react.forwardRef(({ bsPrefix, className, children, controlId, label, ...props }, ref)=>{
@@ -31887,14 +31904,14 @@ var _react = require("react");
 var _uncontrollable = require("uncontrollable");
 var _nav = require("@restart/ui/Nav");
 var _navDefault = parcelHelpers.interopDefault(_nav);
-var _themeProvider = require("./ThemeProvider.js");
-var _navbarContext = require("./NavbarContext.js");
+var _themeProvider = require("./ThemeProvider");
+var _navbarContext = require("./NavbarContext");
 var _navbarContextDefault = parcelHelpers.interopDefault(_navbarContext);
-var _cardHeaderContext = require("./CardHeaderContext.js");
+var _cardHeaderContext = require("./CardHeaderContext");
 var _cardHeaderContextDefault = parcelHelpers.interopDefault(_cardHeaderContext);
-var _navItem = require("./NavItem.js");
+var _navItem = require("./NavItem");
 var _navItemDefault = parcelHelpers.interopDefault(_navItem);
-var _navLink = require("./NavLink.js");
+var _navLink = require("./NavLink");
 var _navLinkDefault = parcelHelpers.interopDefault(_navLink);
 var _jsxRuntime = require("react/jsx-runtime");
 "use client";
@@ -32006,9 +32023,9 @@ parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "useUncontrolled", ()=>(0, _hookDefault.default));
 parcelHelpers.export(exports, "useUncontrolledProp", ()=>(0, _hook.useUncontrolledProp));
 parcelHelpers.export(exports, "uncontrollable", ()=>(0, _uncontrollableDefault.default));
-var _hook = require("./hook.js");
+var _hook = require("./hook");
 var _hookDefault = parcelHelpers.interopDefault(_hook);
-var _uncontrollable = require("./uncontrollable.js");
+var _uncontrollable = require("./uncontrollable");
 var _uncontrollableDefault = parcelHelpers.interopDefault(_uncontrollable);
 
 },{"./hook":"cv9oS","./uncontrollable":"aqbCD","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"cv9oS":[function(require,module,exports) {
@@ -32021,7 +32038,7 @@ var _extendsDefault = parcelHelpers.interopDefault(_extends);
 var _objectWithoutPropertiesLoose = require("@babel/runtime/helpers/esm/objectWithoutPropertiesLoose");
 var _objectWithoutPropertiesLooseDefault = parcelHelpers.interopDefault(_objectWithoutPropertiesLoose);
 var _react = require("react");
-var _utils = require("./utils.js");
+var _utils = require("./utils");
 function _toPropertyKey(arg) {
     var key = _toPrimitive(arg, "string");
     return typeof key === "symbol" ? key : String(key);
@@ -32188,7 +32205,7 @@ var _reactDefault = parcelHelpers.interopDefault(_react);
 var _reactLifecyclesCompat = require("react-lifecycles-compat");
 var _invariant = require("invariant");
 var _invariantDefault = parcelHelpers.interopDefault(_invariant);
-var _utils = require("./utils.js");
+var _utils = require("./utils");
 var _jsxFileName = "/Users/jquense/src/uncontrollable/src/uncontrollable.js";
 function uncontrollable(Component, controlledValues, methods) {
     if (methods === void 0) methods = [];
@@ -32422,14 +32439,14 @@ var _useForceUpdate = require("@restart/hooks/useForceUpdate");
 var _useForceUpdateDefault = parcelHelpers.interopDefault(_useForceUpdate);
 var _useMergedRefs = require("@restart/hooks/useMergedRefs");
 var _useMergedRefsDefault = parcelHelpers.interopDefault(_useMergedRefs);
-var _navContext = require("./NavContext.js");
+var _navContext = require("./NavContext");
 var _navContextDefault = parcelHelpers.interopDefault(_navContext);
-var _selectableContext = require("./SelectableContext.js");
+var _selectableContext = require("./SelectableContext");
 var _selectableContextDefault = parcelHelpers.interopDefault(_selectableContext);
-var _tabContext = require("./TabContext.js");
+var _tabContext = require("./TabContext");
 var _tabContextDefault = parcelHelpers.interopDefault(_tabContext);
-var _dataKey = require("./DataKey.js");
-var _navItem = require("./NavItem.js");
+var _dataKey = require("./DataKey");
+var _navItem = require("./NavItem");
 var _navItemDefault = parcelHelpers.interopDefault(_navItem);
 var _jsxRuntime = require("react/jsx-runtime");
 const _excluded = [
@@ -32614,14 +32631,14 @@ parcelHelpers.export(exports, "useNavItem", ()=>useNavItem);
 var _react = require("react");
 var _useEventCallback = require("@restart/hooks/useEventCallback");
 var _useEventCallbackDefault = parcelHelpers.interopDefault(_useEventCallback);
-var _navContext = require("./NavContext.js");
+var _navContext = require("./NavContext");
 var _navContextDefault = parcelHelpers.interopDefault(_navContext);
-var _selectableContext = require("./SelectableContext.js");
+var _selectableContext = require("./SelectableContext");
 var _selectableContextDefault = parcelHelpers.interopDefault(_selectableContext);
-var _button = require("./Button.js");
+var _button = require("./Button");
 var _buttonDefault = parcelHelpers.interopDefault(_button);
-var _dataKey = require("./DataKey.js");
-var _tabContext = require("./TabContext.js");
+var _dataKey = require("./DataKey");
+var _tabContext = require("./TabContext");
 var _tabContextDefault = parcelHelpers.interopDefault(_tabContext);
 var _jsxRuntime = require("react/jsx-runtime");
 const _excluded = [
@@ -32708,7 +32725,7 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>useEventCallback);
 var _react = require("react");
-var _useCommittedRef = require("./useCommittedRef.js");
+var _useCommittedRef = require("./useCommittedRef");
 var _useCommittedRefDefault = parcelHelpers.interopDefault(_useCommittedRef);
 function useEventCallback(fn) {
     const ref = (0, _useCommittedRefDefault.default)(fn);
@@ -32758,7 +32775,7 @@ parcelHelpers.defineInteropFlag(exports);
 var _react = require("react");
 var _classnames = require("classnames");
 var _classnamesDefault = parcelHelpers.interopDefault(_classnames);
-var _themeProvider = require("./ThemeProvider.js");
+var _themeProvider = require("./ThemeProvider");
 var _jsxRuntime = require("react/jsx-runtime");
 "use client";
 const NavItem = /*#__PURE__*/ _react.forwardRef(({ className, bsPrefix, as: Component = "div", ...props }, ref)=>{
@@ -32782,7 +32799,7 @@ var _anchor = require("@restart/ui/Anchor");
 var _anchorDefault = parcelHelpers.interopDefault(_anchor);
 var _navItem = require("@restart/ui/NavItem");
 var _selectableContext = require("@restart/ui/SelectableContext");
-var _themeProvider = require("./ThemeProvider.js");
+var _themeProvider = require("./ThemeProvider");
 var _jsxRuntime = require("react/jsx-runtime");
 "use client";
 const NavLink = /*#__PURE__*/ _react.forwardRef(({ bsPrefix, className, as: Component = (0, _anchorDefault.default), active, eventKey, disabled = false, ...props }, ref)=>{
@@ -32810,7 +32827,7 @@ parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "isTrivialHref", ()=>isTrivialHref);
 /* eslint-disable jsx-a11y/no-static-element-interactions */ /* eslint-disable jsx-a11y/anchor-has-content */ var _react = require("react");
 var _hooks = require("@restart/hooks");
-var _button = require("./Button.js");
+var _button = require("./Button");
 var _jsxRuntime = require("react/jsx-runtime");
 const _excluded = [
     "onKeyDown"
@@ -32872,31 +32889,31 @@ parcelHelpers.export(exports, "useMounted", ()=>(0, _useMountedDefault.default))
 parcelHelpers.export(exports, "usePrevious", ()=>(0, _usePreviousDefault.default));
 parcelHelpers.export(exports, "useImage", ()=>(0, _useImageDefault.default));
 parcelHelpers.export(exports, "useResizeObserver", ()=>(0, _useResizeObserverDefault.default));
-var _useCallbackRef = require("./useCallbackRef.js");
+var _useCallbackRef = require("./useCallbackRef");
 var _useCallbackRefDefault = parcelHelpers.interopDefault(_useCallbackRef);
-var _useCommittedRef = require("./useCommittedRef.js");
+var _useCommittedRef = require("./useCommittedRef");
 var _useCommittedRefDefault = parcelHelpers.interopDefault(_useCommittedRef);
-var _useEventCallback = require("./useEventCallback.js");
+var _useEventCallback = require("./useEventCallback");
 var _useEventCallbackDefault = parcelHelpers.interopDefault(_useEventCallback);
-var _useEventListener = require("./useEventListener.js");
+var _useEventListener = require("./useEventListener");
 var _useEventListenerDefault = parcelHelpers.interopDefault(_useEventListener);
-var _useGlobalListener = require("./useGlobalListener.js");
+var _useGlobalListener = require("./useGlobalListener");
 var _useGlobalListenerDefault = parcelHelpers.interopDefault(_useGlobalListener);
-var _useInterval = require("./useInterval.js");
+var _useInterval = require("./useInterval");
 var _useIntervalDefault = parcelHelpers.interopDefault(_useInterval);
-var _useRafInterval = require("./useRafInterval.js");
+var _useRafInterval = require("./useRafInterval");
 var _useRafIntervalDefault = parcelHelpers.interopDefault(_useRafInterval);
-var _useMergeState = require("./useMergeState.js");
+var _useMergeState = require("./useMergeState");
 var _useMergeStateDefault = parcelHelpers.interopDefault(_useMergeState);
-var _useMergeStateFromProps = require("./useMergeStateFromProps.js");
+var _useMergeStateFromProps = require("./useMergeStateFromProps");
 var _useMergeStateFromPropsDefault = parcelHelpers.interopDefault(_useMergeStateFromProps);
-var _useMounted = require("./useMounted.js");
+var _useMounted = require("./useMounted");
 var _useMountedDefault = parcelHelpers.interopDefault(_useMounted);
-var _usePrevious = require("./usePrevious.js");
+var _usePrevious = require("./usePrevious");
 var _usePreviousDefault = parcelHelpers.interopDefault(_usePrevious);
-var _useImage = require("./useImage.js");
+var _useImage = require("./useImage");
 var _useImageDefault = parcelHelpers.interopDefault(_useImage);
-var _useResizeObserver = require("./useResizeObserver.js");
+var _useResizeObserver = require("./useResizeObserver");
 var _useResizeObserverDefault = parcelHelpers.interopDefault(_useResizeObserver);
 
 },{"./useCallbackRef":"82p6M","./useCommittedRef":"g5BYG","./useEventCallback":"7ONdq","./useEventListener":"dBDI3","./useGlobalListener":"iey73","./useInterval":"hnmo4","./useRafInterval":"4qbLw","./useMergeState":"7E8IK","./useMergeStateFromProps":"6f6Me","./useMounted":"iK6A1","./usePrevious":"gDCGm","./useImage":"iuAlv","./useResizeObserver":"edwGv","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"82p6M":[function(require,module,exports) {
@@ -32913,7 +32930,7 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>useEventListener);
 var _react = require("react");
-var _useEventCallback = require("./useEventCallback.js");
+var _useEventCallback = require("./useEventCallback");
 var _useEventCallbackDefault = parcelHelpers.interopDefault(_useEventCallback);
 function useEventListener(eventTarget, event, listener, capture = false) {
     const handler = (0, _useEventCallbackDefault.default)(listener);
@@ -32930,7 +32947,7 @@ function useEventListener(eventTarget, event, listener, capture = false) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>useGlobalListener);
-var _useEventListener = require("./useEventListener.js");
+var _useEventListener = require("./useEventListener");
 var _useEventListenerDefault = parcelHelpers.interopDefault(_useEventListener);
 var _react = require("react");
 function useGlobalListener(event, handler, capture = false) {
@@ -32942,7 +32959,7 @@ function useGlobalListener(event, handler, capture = false) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _react = require("react");
-var _useCommittedRef = require("./useCommittedRef.js");
+var _useCommittedRef = require("./useCommittedRef");
 var _useCommittedRefDefault = parcelHelpers.interopDefault(_useCommittedRef);
 /**
  * Creates a `setInterval` that is properly cleaned up when a component unmounted
@@ -33028,7 +33045,7 @@ exports.default = useInterval;
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _react = require("react");
-var _useCommittedRef = require("./useCommittedRef.js");
+var _useCommittedRef = require("./useCommittedRef");
 var _useCommittedRefDefault = parcelHelpers.interopDefault(_useCommittedRef);
 function useRafInterval(fn, ms, paused = false) {
     let handle;
@@ -33082,7 +33099,7 @@ function useMergeState(initialState) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>useMergeStateFromProps);
-var _useMergeState = require("./useMergeState.js");
+var _useMergeState = require("./useMergeState");
 var _useMergeStateDefault = parcelHelpers.interopDefault(_useMergeState);
 function useMergeStateFromProps(props, gDSFP, initialState) {
     const [state, setState] = (0, _useMergeStateDefault.default)(initialState);
@@ -33181,7 +33198,7 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>useResizeObserver);
 var _react = require("react");
-var _useIsomorphicEffect = require("./useIsomorphicEffect.js");
+var _useIsomorphicEffect = require("./useIsomorphicEffect");
 var _useIsomorphicEffectDefault = parcelHelpers.interopDefault(_useIsomorphicEffect);
 const targetMap = new WeakMap();
 let resizeObserver;
@@ -33239,18 +33256,18 @@ var _react = require("react");
 var _selectableContext = require("@restart/ui/SelectableContext");
 var _selectableContextDefault = parcelHelpers.interopDefault(_selectableContext);
 var _uncontrollable = require("uncontrollable");
-var _navbarBrand = require("./NavbarBrand.js");
+var _navbarBrand = require("./NavbarBrand");
 var _navbarBrandDefault = parcelHelpers.interopDefault(_navbarBrand);
-var _navbarCollapse = require("./NavbarCollapse.js");
+var _navbarCollapse = require("./NavbarCollapse");
 var _navbarCollapseDefault = parcelHelpers.interopDefault(_navbarCollapse);
-var _navbarToggle = require("./NavbarToggle.js");
+var _navbarToggle = require("./NavbarToggle");
 var _navbarToggleDefault = parcelHelpers.interopDefault(_navbarToggle);
-var _navbarOffcanvas = require("./NavbarOffcanvas.js");
+var _navbarOffcanvas = require("./NavbarOffcanvas");
 var _navbarOffcanvasDefault = parcelHelpers.interopDefault(_navbarOffcanvas);
-var _themeProvider = require("./ThemeProvider.js");
-var _navbarContext = require("./NavbarContext.js");
+var _themeProvider = require("./ThemeProvider");
+var _navbarContext = require("./NavbarContext");
 var _navbarContextDefault = parcelHelpers.interopDefault(_navbarContext);
-var _navbarText = require("./NavbarText.js");
+var _navbarText = require("./NavbarText");
 var _navbarTextDefault = parcelHelpers.interopDefault(_navbarText);
 var _jsxRuntime = require("react/jsx-runtime");
 "use client";
@@ -33313,7 +33330,7 @@ parcelHelpers.defineInteropFlag(exports);
 var _classnames = require("classnames");
 var _classnamesDefault = parcelHelpers.interopDefault(_classnames);
 var _react = require("react");
-var _themeProvider = require("./ThemeProvider.js");
+var _themeProvider = require("./ThemeProvider");
 var _jsxRuntime = require("react/jsx-runtime");
 "use client";
 const NavbarBrand = /*#__PURE__*/ _react.forwardRef(({ bsPrefix, className, as, ...props }, ref)=>{
@@ -33332,10 +33349,10 @@ exports.default = NavbarBrand;
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _react = require("react");
-var _collapse = require("./Collapse.js");
+var _collapse = require("./Collapse");
 var _collapseDefault = parcelHelpers.interopDefault(_collapse);
-var _themeProvider = require("./ThemeProvider.js");
-var _navbarContext = require("./NavbarContext.js");
+var _themeProvider = require("./ThemeProvider");
+var _navbarContext = require("./NavbarContext");
 var _navbarContextDefault = parcelHelpers.interopDefault(_navbarContext);
 var _jsxRuntime = require("react/jsx-runtime");
 "use client";
@@ -33363,8 +33380,8 @@ var _classnamesDefault = parcelHelpers.interopDefault(_classnames);
 var _react = require("react");
 var _useEventCallback = require("@restart/hooks/useEventCallback");
 var _useEventCallbackDefault = parcelHelpers.interopDefault(_useEventCallback);
-var _themeProvider = require("./ThemeProvider.js");
-var _navbarContext = require("./NavbarContext.js");
+var _themeProvider = require("./ThemeProvider");
+var _navbarContext = require("./NavbarContext");
 var _navbarContextDefault = parcelHelpers.interopDefault(_navbarContext);
 var _jsxRuntime = require("react/jsx-runtime");
 "use client";
@@ -33395,9 +33412,9 @@ exports.default = NavbarToggle;
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _react = require("react");
-var _offcanvas = require("./Offcanvas.js");
+var _offcanvas = require("./Offcanvas");
 var _offcanvasDefault = parcelHelpers.interopDefault(_offcanvas);
-var _navbarContext = require("./NavbarContext.js");
+var _navbarContext = require("./NavbarContext");
 var _navbarContextDefault = parcelHelpers.interopDefault(_navbarContext);
 var _jsxRuntime = require("react/jsx-runtime");
 "use client";
@@ -33425,22 +33442,22 @@ var _useEventCallbackDefault = parcelHelpers.interopDefault(_useEventCallback);
 var _react = require("react");
 var _modal = require("@restart/ui/Modal");
 var _modalDefault = parcelHelpers.interopDefault(_modal);
-var _fade = require("./Fade.js");
+var _fade = require("./Fade");
 var _fadeDefault = parcelHelpers.interopDefault(_fade);
-var _offcanvasBody = require("./OffcanvasBody.js");
+var _offcanvasBody = require("./OffcanvasBody");
 var _offcanvasBodyDefault = parcelHelpers.interopDefault(_offcanvasBody);
-var _offcanvasToggling = require("./OffcanvasToggling.js");
+var _offcanvasToggling = require("./OffcanvasToggling");
 var _offcanvasTogglingDefault = parcelHelpers.interopDefault(_offcanvasToggling);
-var _modalContext = require("./ModalContext.js");
+var _modalContext = require("./ModalContext");
 var _modalContextDefault = parcelHelpers.interopDefault(_modalContext);
-var _navbarContext = require("./NavbarContext.js");
+var _navbarContext = require("./NavbarContext");
 var _navbarContextDefault = parcelHelpers.interopDefault(_navbarContext);
-var _offcanvasHeader = require("./OffcanvasHeader.js");
+var _offcanvasHeader = require("./OffcanvasHeader");
 var _offcanvasHeaderDefault = parcelHelpers.interopDefault(_offcanvasHeader);
-var _offcanvasTitle = require("./OffcanvasTitle.js");
+var _offcanvasTitle = require("./OffcanvasTitle");
 var _offcanvasTitleDefault = parcelHelpers.interopDefault(_offcanvasTitle);
-var _themeProvider = require("./ThemeProvider.js");
-var _bootstrapModalManager = require("./BootstrapModalManager.js");
+var _themeProvider = require("./ThemeProvider");
+var _bootstrapModalManager = require("./BootstrapModalManager");
 var _bootstrapModalManagerDefault = parcelHelpers.interopDefault(_bootstrapModalManager);
 var _jsxRuntime = require("react/jsx-runtime");
 "use client";
@@ -33578,7 +33595,7 @@ parcelHelpers.defineInteropFlag(exports);
  *
  * @param breakpointValues A object hash of names to breakpoint dimensions
  */ parcelHelpers.export(exports, "createBreakpointHook", ()=>createBreakpointHook);
-var _useMediaQuery = require("./useMediaQuery.js");
+var _useMediaQuery = require("./useMediaQuery");
 var _useMediaQueryDefault = parcelHelpers.interopDefault(_useMediaQuery);
 var _react = require("react");
 function createBreakpointHook(breakpointValues) {
@@ -33668,7 +33685,7 @@ exports.default = useBreakpoint;
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>useMediaQuery);
-var _useIsomorphicEffect = require("./useIsomorphicEffect.js");
+var _useIsomorphicEffect = require("./useIsomorphicEffect");
 var _useIsomorphicEffectDefault = parcelHelpers.interopDefault(_useIsomorphicEffect);
 var _react = require("react");
 const matchersByWindow = new WeakMap();
@@ -33731,14 +33748,14 @@ var _usePrevious = require("@restart/hooks/usePrevious");
 var _usePreviousDefault = parcelHelpers.interopDefault(_usePrevious);
 var _useEventCallback = require("@restart/hooks/useEventCallback");
 var _useEventCallbackDefault = parcelHelpers.interopDefault(_useEventCallback);
-var _modalManager = require("./ModalManager.js");
+var _modalManager = require("./ModalManager");
 var _modalManagerDefault = parcelHelpers.interopDefault(_modalManager);
-var _useWaitForDOMRef = require("./useWaitForDOMRef.js");
+var _useWaitForDOMRef = require("./useWaitForDOMRef");
 var _useWaitForDOMRefDefault = parcelHelpers.interopDefault(_useWaitForDOMRef);
-var _useWindow = require("./useWindow.js");
+var _useWindow = require("./useWindow");
 var _useWindowDefault = parcelHelpers.interopDefault(_useWindow);
-var _imperativeTransition = require("./ImperativeTransition.js");
-var _utils = require("./utils.js");
+var _imperativeTransition = require("./ImperativeTransition");
+var _utils = require("./utils");
 var _jsxRuntime = require("react/jsx-runtime");
 const _excluded = [
     "show",
@@ -33961,7 +33978,7 @@ exports.default = Object.assign(Modal, {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>activeElement);
-var _ownerDocument = require("./ownerDocument.js");
+var _ownerDocument = require("./ownerDocument");
 var _ownerDocumentDefault = parcelHelpers.interopDefault(_ownerDocument);
 function activeElement(doc) {
     if (doc === void 0) doc = (0, _ownerDocumentDefault.default)();
@@ -33997,7 +34014,7 @@ function contains(context, node) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>useWillUnmount);
-var _useUpdatedRef = require("./useUpdatedRef.js");
+var _useUpdatedRef = require("./useUpdatedRef");
 var _useUpdatedRefDefault = parcelHelpers.interopDefault(_useUpdatedRef);
 var _react = require("react");
 function useWillUnmount(fn) {
@@ -34022,8 +34039,8 @@ parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "OPEN_DATA_ATTRIBUTE", ()=>OPEN_DATA_ATTRIBUTE);
 var _css = require("dom-helpers/css");
 var _cssDefault = parcelHelpers.interopDefault(_css);
-var _dataKey = require("./DataKey.js");
-var _getScrollbarWidth = require("./getScrollbarWidth.js");
+var _dataKey = require("./DataKey");
+var _getScrollbarWidth = require("./getScrollbarWidth");
 var _getScrollbarWidthDefault = parcelHelpers.interopDefault(_getScrollbarWidth);
 const OPEN_DATA_ATTRIBUTE = (0, _dataKey.dataAttr)("modal-open");
 /**
@@ -34126,7 +34143,7 @@ var _ownerDocumentDefault = parcelHelpers.interopDefault(_ownerDocument);
 var _canUseDOM = require("dom-helpers/canUseDOM");
 var _canUseDOMDefault = parcelHelpers.interopDefault(_canUseDOM);
 var _react = require("react");
-var _useWindow = require("./useWindow.js");
+var _useWindow = require("./useWindow");
 var _useWindowDefault = parcelHelpers.interopDefault(_useWindow);
 const resolveContainerRef = (ref, document)=>{
     if (!(0, _canUseDOMDefault.default)) return null;
@@ -34187,9 +34204,9 @@ var _useIsomorphicEffect = require("@restart/hooks/useIsomorphicEffect");
 var _useIsomorphicEffectDefault = parcelHelpers.interopDefault(_useIsomorphicEffect);
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
-var _noopTransition = require("./NoopTransition.js");
+var _noopTransition = require("./NoopTransition");
 var _noopTransitionDefault = parcelHelpers.interopDefault(_noopTransition);
-var _rtgtransition = require("./RTGTransition.js");
+var _rtgtransition = require("./RTGTransition");
 var _rtgtransitionDefault = parcelHelpers.interopDefault(_rtgtransition);
 var _jsxRuntime = require("react/jsx-runtime");
 function useTransition({ in: inProp, onTransition }) {
@@ -34291,7 +34308,7 @@ exports.default = NoopTransition;
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _react = require("react");
-var _useRTGTransitionProps = require("./useRTGTransitionProps.js");
+var _useRTGTransitionProps = require("./useRTGTransitionProps");
 var _useRTGTransitionPropsDefault = parcelHelpers.interopDefault(_useRTGTransitionProps);
 var _jsxRuntime = require("react/jsx-runtime");
 const _excluded = [
@@ -34326,7 +34343,7 @@ parcelHelpers.export(exports, "default", ()=>useRTGTransitionProps);
 var _react = require("react");
 var _useMergedRefs = require("@restart/hooks/useMergedRefs");
 var _useMergedRefsDefault = parcelHelpers.interopDefault(_useMergedRefs);
-var _utils = require("./utils.js");
+var _utils = require("./utils");
 const _excluded = [
     "onEnter",
     "onEntering",
@@ -34429,7 +34446,7 @@ parcelHelpers.defineInteropFlag(exports);
 var _react = require("react");
 var _classnames = require("classnames");
 var _classnamesDefault = parcelHelpers.interopDefault(_classnames);
-var _themeProvider = require("./ThemeProvider.js");
+var _themeProvider = require("./ThemeProvider");
 var _jsxRuntime = require("react/jsx-runtime");
 "use client";
 const OffcanvasBody = /*#__PURE__*/ _react.forwardRef(({ className, bsPrefix, as: Component = "div", ...props }, ref)=>{
@@ -34450,11 +34467,11 @@ var _classnames = require("classnames");
 var _classnamesDefault = parcelHelpers.interopDefault(_classnames);
 var _react = require("react");
 var _transition = require("react-transition-group/Transition");
-var _transitionEndListener = require("./transitionEndListener.js");
+var _transitionEndListener = require("./transitionEndListener");
 var _transitionEndListenerDefault = parcelHelpers.interopDefault(_transitionEndListener);
-var _transitionWrapper = require("./TransitionWrapper.js");
+var _transitionWrapper = require("./TransitionWrapper");
 var _transitionWrapperDefault = parcelHelpers.interopDefault(_transitionWrapper);
-var _themeProvider = require("./ThemeProvider.js");
+var _themeProvider = require("./ThemeProvider");
 var _jsxRuntime = require("react/jsx-runtime");
 "use client";
 const transitionStyles = {
@@ -34498,8 +34515,8 @@ parcelHelpers.defineInteropFlag(exports);
 var _classnames = require("classnames");
 var _classnamesDefault = parcelHelpers.interopDefault(_classnames);
 var _react = require("react");
-var _themeProvider = require("./ThemeProvider.js");
-var _abstractModalHeader = require("./AbstractModalHeader.js");
+var _themeProvider = require("./ThemeProvider");
+var _abstractModalHeader = require("./AbstractModalHeader");
 var _abstractModalHeaderDefault = parcelHelpers.interopDefault(_abstractModalHeader);
 var _jsxRuntime = require("react/jsx-runtime");
 "use client";
@@ -34522,9 +34539,9 @@ parcelHelpers.defineInteropFlag(exports);
 var _react = require("react");
 var _useEventCallback = require("@restart/hooks/useEventCallback");
 var _useEventCallbackDefault = parcelHelpers.interopDefault(_useEventCallback);
-var _closeButton = require("./CloseButton.js");
+var _closeButton = require("./CloseButton");
 var _closeButtonDefault = parcelHelpers.interopDefault(_closeButton);
-var _modalContext = require("./ModalContext.js");
+var _modalContext = require("./ModalContext");
 var _modalContextDefault = parcelHelpers.interopDefault(_modalContext);
 var _jsxRuntime = require("react/jsx-runtime");
 "use client";
@@ -34555,9 +34572,9 @@ parcelHelpers.defineInteropFlag(exports);
 var _react = require("react");
 var _classnames = require("classnames");
 var _classnamesDefault = parcelHelpers.interopDefault(_classnames);
-var _divWithClassName = require("./divWithClassName.js");
+var _divWithClassName = require("./divWithClassName");
 var _divWithClassNameDefault = parcelHelpers.interopDefault(_divWithClassName);
-var _themeProvider = require("./ThemeProvider.js");
+var _themeProvider = require("./ThemeProvider");
 var _jsxRuntime = require("react/jsx-runtime");
 "use client";
 const DivStyledAsH5 = (0, _divWithClassNameDefault.default)("h5");
@@ -34643,7 +34660,7 @@ exports.default = BootstrapModalManager;
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>addClass);
-var _hasClass = require("./hasClass.js");
+var _hasClass = require("./hasClass");
 var _hasClassDefault = parcelHelpers.interopDefault(_hasClass);
 function addClass(element, className) {
     if (element.classList) element.classList.add(className);
@@ -34686,7 +34703,7 @@ parcelHelpers.defineInteropFlag(exports);
 var _react = require("react");
 var _classnames = require("classnames");
 var _classnamesDefault = parcelHelpers.interopDefault(_classnames);
-var _themeProvider = require("./ThemeProvider.js");
+var _themeProvider = require("./ThemeProvider");
 var _jsxRuntime = require("react/jsx-runtime");
 "use client";
 const NavbarText = /*#__PURE__*/ _react.forwardRef(({ className, bsPrefix, as: Component = "span", ...props }, ref)=>{
@@ -34706,7 +34723,7 @@ parcelHelpers.defineInteropFlag(exports);
 var _classnames = require("classnames");
 var _classnamesDefault = parcelHelpers.interopDefault(_classnames);
 var _react = require("react");
-var _themeProvider = require("./ThemeProvider.js");
+var _themeProvider = require("./ThemeProvider");
 var _jsxRuntime = require("react/jsx-runtime");
 "use client";
 const Row = /*#__PURE__*/ _react.forwardRef(({ bsPrefix, className, // Need to define the default "as" during prop destructuring to be compatible with styled-components github.com/react-bootstrap/react-bootstrap/issues/3595
@@ -37124,7 +37141,7 @@ $RefreshReg$(_c, "SignupView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-bootstrap/Button":"aPzUt","react-bootstrap/Form":"iBZ80","react-router":"btA8E","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"bsPVM":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-router":"btA8E","react-bootstrap/Button":"aPzUt","react-bootstrap/Form":"iBZ80","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"bsPVM":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$abf5 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -37265,7 +37282,7 @@ var _react = require("react");
 var _reactBootstrap = require("react-bootstrap");
 var _movieCard = require("../movie-card/movie-card");
 var _reactRouterDom = require("react-router-dom");
-var _userInfo = require("./user-info.js");
+var _userInfo = require("./user-info");
 var _userInfoDefault = parcelHelpers.interopDefault(_userInfo);
 var _s = $RefreshSig$();
 const ProfileView = ({ user, token, movies, handleRemoveFromFavorites })=>{
