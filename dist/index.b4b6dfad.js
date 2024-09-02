@@ -27366,20 +27366,20 @@ return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
             placeholder: "Search for a movie..."
         }, void 0, false, {
             fileName: "src/components/main-view/main-view.jsx",
-            lineNumber: 299,
+            lineNumber: 297,
             columnNumber: 5
         }, undefined),
         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("ul", {
             ref: movieList
         }, void 0, false, {
             fileName: "src/components/main-view/main-view.jsx",
-            lineNumber: 300,
+            lineNumber: 298,
             columnNumber: 5
         }, undefined)
     ]
 }, void 0, true, {
     fileName: "src/components/main-view/main-view.jsx",
-    lineNumber: 298,
+    lineNumber: 296,
     columnNumber: 3
 }, undefined);
 

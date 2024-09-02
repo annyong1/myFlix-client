@@ -266,8 +266,6 @@ return (
 	);
 };
 
-import { useRef, useEffect } from 'react';
-
 const searchBar = useRef(null);
 const movieList = useRef(null);
 
