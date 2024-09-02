@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef} from 'react';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 import { LoginView } from '../login-view/login-view';
@@ -128,26 +128,42 @@ export const MainView = () => {
 		fetchMovies(token);
 	}, [token]);
 
-	const searchBar = document.getElementById('search-bar');
-	const movieList = document.getElementById('movie-list');
 	
-	searchBar.addEventListener('input', (e) => {
-	  const searchQuery = e.target.value.toLowerCase();
-	  const filteredMovies = movies.filter((movie) => {
-		return movie.title.toLowerCase().includes(searchQuery);
-	  });
-	  renderMovieList(filteredMovies);
-	});
+	const searchBar = useRef(null);
+	const movieList = useRef(null);
+	
+	useEffect(() => {
+	  if (searchBar.current && movieList.current) {
+		searchBar.current.addEventListener('input', (e) => {
+		  const searchQuery = e.target.value.toLowerCase();
+		  const filteredMovies = movies.filter((movie) => {
+			return movie.title.toLowerCase().includes(searchQuery);
+		  });
+		  renderMovieList(filteredMovies);
+		});
+	  }
+	}, []);
 	
 	function renderMovieList(movies) {
-	  movieList.innerHTML = '';
-	  movies.forEach((movie) => {
-		const movieListItem = document.createElement('li');
-		movieListItem.textContent = movie.title;
-		movieList.appendChild(movieListItem);
-	  });
+	  if (movieList.current) {
+		movieList.current.innerHTML = '';
+		movies.forEach((movie) => {
+		  const movieListItem = document.createElement('li');
+		  movieListItem.textContent = movie.title;
+		  movieList.current.appendChild(movieListItem);
+		});
+	  }
 	}
-
+	
+	return (
+	  <div>
+		<input type="search" ref={searchBar} placeholder="Search for a movie..." />
+		<ul ref={movieList}>
+		  {/* movie list will be rendered here */}
+		</ul>
+	  </div>
+	);
+	
 	return (
 		<BrowserRouter>
 			<Row className='justify-content-md-center'>
