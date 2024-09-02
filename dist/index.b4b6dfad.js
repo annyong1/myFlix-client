@@ -36941,11 +36941,11 @@ parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "SignupView", ()=>SignupView);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
+var _reactRouter = require("react-router");
 var _button = require("react-bootstrap/Button");
 var _buttonDefault = parcelHelpers.interopDefault(_button);
 var _form = require("react-bootstrap/Form");
 var _formDefault = parcelHelpers.interopDefault(_form);
-var _reactRouter = require("react-router");
 var _s = $RefreshSig$();
 const SignupView = ()=>{
     _s();
@@ -36953,11 +36953,7 @@ const SignupView = ()=>{
     const [password, setPassword] = (0, _react.useState)("");
     const [email, setEmail] = (0, _react.useState)("");
     const [birthday, setBirthday] = (0, _react.useState)("");
-<<<<<<< HEAD
     const navigate = (0, _reactRouter.useNavigate)();
-=======
-    let navigate = (0, _reactRouter.useNavigate)();
->>>>>>> origin/main
     const handleSubmit = (event)=>{
         event.preventDefault();
         const data = {
@@ -36977,6 +36973,8 @@ const SignupView = ()=>{
                 alert("Signup successful");
                 navigate("/login");
             } else alert("Signup failed");
+        }).catch((error)=>{
+            console.error(error);
         });
     };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default), {
@@ -36989,13 +36987,8 @@ const SignupView = ()=>{
                         children: "Username:"
                     }, void 0, false, {
                         fileName: "src/components/signup-view/signup-view.jsx",
-<<<<<<< HEAD
-                        lineNumber: 42,
-                        columnNumber: 5
-=======
-                        lineNumber: 43,
-                        columnNumber: 17
->>>>>>> origin/main
+                        lineNumber: 46,
+                        columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
                         type: "text",
@@ -37005,24 +36998,14 @@ const SignupView = ()=>{
                         minLength: "3"
                     }, void 0, false, {
                         fileName: "src/components/signup-view/signup-view.jsx",
-<<<<<<< HEAD
-                        lineNumber: 43,
-                        columnNumber: 5
-=======
-                        lineNumber: 44,
-                        columnNumber: 17
->>>>>>> origin/main
+                        lineNumber: 47,
+                        columnNumber: 9
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/signup-view/signup-view.jsx",
-<<<<<<< HEAD
-                lineNumber: 41,
-                columnNumber: 4
-=======
-                lineNumber: 42,
-                columnNumber: 13
->>>>>>> origin/main
+                lineNumber: 45,
+                columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
                 controlId: "signUpFormPassword",
@@ -37031,13 +37014,8 @@ const SignupView = ()=>{
                         children: "Password:"
                     }, void 0, false, {
                         fileName: "src/components/signup-view/signup-view.jsx",
-<<<<<<< HEAD
-                        lineNumber: 53,
-                        columnNumber: 5
-=======
-                        lineNumber: 54,
-                        columnNumber: 17
->>>>>>> origin/main
+                        lineNumber: 57,
+                        columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
                         type: "password",
@@ -37046,24 +37024,14 @@ const SignupView = ()=>{
                         required: true
                     }, void 0, false, {
                         fileName: "src/components/signup-view/signup-view.jsx",
-<<<<<<< HEAD
-                        lineNumber: 54,
-                        columnNumber: 5
-=======
-                        lineNumber: 55,
-                        columnNumber: 17
->>>>>>> origin/main
+                        lineNumber: 58,
+                        columnNumber: 9
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/signup-view/signup-view.jsx",
-<<<<<<< HEAD
-                lineNumber: 52,
-                columnNumber: 4
-=======
-                lineNumber: 53,
-                columnNumber: 13
->>>>>>> origin/main
+                lineNumber: 56,
+                columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
                 controlId: "signUpFormEmail",
@@ -37072,13 +37040,8 @@ const SignupView = ()=>{
                         children: "Email:"
                     }, void 0, false, {
                         fileName: "src/components/signup-view/signup-view.jsx",
-<<<<<<< HEAD
-                        lineNumber: 62,
-                        columnNumber: 5
-=======
-                        lineNumber: 63,
-                        columnNumber: 17
->>>>>>> origin/main
+                        lineNumber: 67,
+                        columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
                         type: "email",
@@ -37087,24 +37050,14 @@ const SignupView = ()=>{
                         required: true
                     }, void 0, false, {
                         fileName: "src/components/signup-view/signup-view.jsx",
-<<<<<<< HEAD
-                        lineNumber: 63,
-                        columnNumber: 5
-=======
-                        lineNumber: 64,
-                        columnNumber: 17
->>>>>>> origin/main
+                        lineNumber: 68,
+                        columnNumber: 9
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/signup-view/signup-view.jsx",
-<<<<<<< HEAD
-                lineNumber: 61,
-                columnNumber: 4
-=======
-                lineNumber: 62,
-                columnNumber: 13
->>>>>>> origin/main
+                lineNumber: 66,
+                columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
                 controlId: "signUpFormBirthday",
@@ -37113,13 +37066,8 @@ const SignupView = ()=>{
                         children: "Birthday:"
                     }, void 0, false, {
                         fileName: "src/components/signup-view/signup-view.jsx",
-<<<<<<< HEAD
-                        lineNumber: 71,
-                        columnNumber: 5
-=======
-                        lineNumber: 72,
-                        columnNumber: 17
->>>>>>> origin/main
+                        lineNumber: 77,
+                        columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
                         type: "date",
@@ -37128,24 +37076,14 @@ const SignupView = ()=>{
                         required: true
                     }, void 0, false, {
                         fileName: "src/components/signup-view/signup-view.jsx",
-<<<<<<< HEAD
-                        lineNumber: 72,
-                        columnNumber: 5
-=======
-                        lineNumber: 73,
-                        columnNumber: 17
->>>>>>> origin/main
+                        lineNumber: 78,
+                        columnNumber: 9
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/signup-view/signup-view.jsx",
-<<<<<<< HEAD
-                lineNumber: 70,
-                columnNumber: 4
-=======
-                lineNumber: 71,
-                columnNumber: 13
->>>>>>> origin/main
+                lineNumber: 76,
+                columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 style: {
@@ -37157,40 +37095,22 @@ const SignupView = ()=>{
                     children: "Submit"
                 }, void 0, false, {
                     fileName: "src/components/signup-view/signup-view.jsx",
-<<<<<<< HEAD
-                    lineNumber: 80,
-                    columnNumber: 5
+                    lineNumber: 87,
+                    columnNumber: 9
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/signup-view/signup-view.jsx",
-                lineNumber: 79,
-                columnNumber: 4
-=======
-                    lineNumber: 81,
-                    columnNumber: 17
-                }, undefined)
-            }, void 0, false, {
-                fileName: "src/components/signup-view/signup-view.jsx",
-                lineNumber: 80,
-                columnNumber: 13
->>>>>>> origin/main
+                lineNumber: 86,
+                columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/signup-view/signup-view.jsx",
-<<<<<<< HEAD
-        lineNumber: 40,
-        columnNumber: 3
+        lineNumber: 44,
+        columnNumber: 5
     }, undefined);
 };
 _s(SignupView, "p3+1wSrcONae4swjcDTPAA0n5hU=", false, function() {
-=======
-        lineNumber: 41,
-        columnNumber: 9
-    }, undefined);
-};
-_s(SignupView, "9EY7aHBTeX4vrgzfukBDdK8v2Cw=", false, function() {
->>>>>>> origin/main
     return [
         (0, _reactRouter.useNavigate)
     ];
@@ -37204,11 +37124,7 @@ $RefreshReg$(_c, "SignupView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-<<<<<<< HEAD
 },{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-bootstrap/Button":"aPzUt","react-bootstrap/Form":"iBZ80","react-router":"btA8E","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"bsPVM":[function(require,module,exports) {
-=======
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-bootstrap/Button":"aPzUt","react-bootstrap/Form":"iBZ80","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-router":"btA8E"}],"bsPVM":[function(require,module,exports) {
->>>>>>> origin/main
 var $parcel$ReactRefreshHelpers$abf5 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
