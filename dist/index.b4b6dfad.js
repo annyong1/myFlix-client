@@ -27199,7 +27199,7 @@ var _axiosDefault = parcelHelpers.interopDefault(_axios);
 var _s = $RefreshSig$();
 const MainView = ()=>{
     _s();
-    const [movies, setMovies] = (0, _react.useState)([]);
+    const [movies1, setMovies] = (0, _react.useState)([]);
     const storedUser = JSON.parse(localStorage.getItem("user"));
     const storedToken = localStorage.getItem("token");
     const [user, setUser] = (0, _react.useState)(storedUser ? storedUser : null);
@@ -27256,7 +27256,7 @@ const MainView = ()=>{
             });
             if (!fetchedData.ok) throw new Error(`HTTP error! status: ${fetchedData.status}`);
             const jsonData = await fetchedData.json();
-            const movies = jsonData.map((doc)=>{
+            const movies1 = jsonData.map((doc)=>{
                 return {
                     _id: doc._id,
                     title: doc.Title,
@@ -27274,7 +27274,7 @@ const MainView = ()=>{
                     actors: doc.Actors
                 };
             });
-            setMovies(movies);
+            setMovies(movies1);
         } catch (error) {
             console.log(error);
         }
@@ -27291,16 +27291,16 @@ const MainView = ()=>{
     (0, _react.useEffect)(()=>{
         if (searchBar.current && movieList.current) searchBar.current.addEventListener("input", (e)=>{
             const searchQuery = e.target.value.toLowerCase();
-            const filteredMovies = movies.filter((movie)=>{
+            const filteredMovies = movies1.filter((movie)=>{
                 return movie.title.toLowerCase().includes(searchQuery);
             });
             renderMovieList(filteredMovies);
         });
     }, []);
-    function renderMovieList(movies) {
+    function renderMovieList(movies1) {
         if (movieList.current) {
             movieList.current.innerHTML = "";
-            movies.forEach((movie)=>{
+            movies1.forEach((movie)=>{
                 const movieListItem = document.createElement("li");
                 movieListItem.textContent = movie.title;
                 movieList.current.appendChild(movieListItem);
@@ -27316,28 +27316,72 @@ const MainView = ()=>{
                 placeholder: "Search for a movie..."
             }, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 160,
-                columnNumber: 3
+                lineNumber: 159,
+                columnNumber: 5
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("ul", {
                 ref: movieList
             }, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 161,
-                columnNumber: 3
+                lineNumber: 160,
+                columnNumber: 5
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 159,
-        columnNumber: 4
+        lineNumber: 158,
+        columnNumber: 3
     }, undefined);
 };
 _s(MainView, "8U1pOc7dAbfTJrDLgCmxv9bND7I=");
 _c = MainView;
+const searchBar = (0, _react.useRef)(null);
+const movieList = (0, _react.useRef)(null);
+(0, _react.useEffect)(()=>{
+    if (searchBar.current && movieList.current) searchBar.current.addEventListener("input", (e)=>{
+        const searchQuery = e.target.value.toLowerCase();
+        const filteredMovies = movies.filter((movie)=>{
+            return movie.title.toLowerCase().includes(searchQuery);
+        });
+        renderMovieList(filteredMovies);
+    });
+}, []);
+function renderMovieList(movies1) {
+    if (movieList.current) {
+        movieList.current.innerHTML = "";
+        movies1.forEach((movie)=>{
+            const movieListItem = document.createElement("li");
+            movieListItem.textContent = movie.title;
+            movieList.current.appendChild(movieListItem);
+        });
+    }
+}
 exports.default = MainView;
 var _c;
-$RefreshReg$(_c, "MainView");
+return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+    children: [
+        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
+            type: "search",
+            ref: searchBar,
+            placeholder: "Search for a movie..."
+        }, void 0, false, {
+            fileName: "src/components/main-view/main-view.jsx",
+            lineNumber: 299,
+            columnNumber: 5
+        }, undefined),
+        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("ul", {
+            ref: movieList
+        }, void 0, false, {
+            fileName: "src/components/main-view/main-view.jsx",
+            lineNumber: 300,
+            columnNumber: 5
+        }, undefined)
+    ]
+}, void 0, true, {
+    fileName: "src/components/main-view/main-view.jsx",
+    lineNumber: 298,
+    columnNumber: 3
+}, undefined);
 
   $parcel$ReactRefreshHelpers$f7a6.postlude(module);
 } finally {
