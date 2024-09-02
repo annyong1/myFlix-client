@@ -24,7 +24,8 @@ export const MainView = () => {
   const [token, setToken] = useState(storedToken ? storedToken : null);
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredMovies, setFilteredMovies] = useState([]);
-
+  const searchBar = useRef(null);
+  const movieList = useRef(null);	
   async function getUser() {
     try {
       const response = await fetch(
@@ -69,9 +70,6 @@ export const MainView = () => {
       console.log(error);
     }
   }
-
-  const searchBar = useRef(null);
-  const movieList = useRef(null);
 
   useEffect(() => {
     if (searchBar.current && movieList.current) {
