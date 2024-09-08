@@ -22,6 +22,7 @@
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.12.0",
+    "node-sass": "9.0.0",
     "buffer": "^6.0.3",
     "parcel": "^2.12.0",
     "process": "^0.11.10"
